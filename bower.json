@@ -1,0 +1,23 @@
+{
+  "name": "blog",
+  "description": "test blog",
+  "main": "public",
+  "authors": [
+    "Micah Conte <micahconte@hotmail.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "bootstrap-sass-official#^3.3.6"
+  }
+}

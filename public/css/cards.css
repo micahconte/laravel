@@ -1,0 +1,16 @@
+p{
+    font-style:roboto !important;
+    color:#333333 !important;
+    font-size: 16px !important;
+    font-family: sans-serif !important;
+}
+#cards-content{
+    background-color:green;
+    height:250px;
+}
+#nextCard{
+    z-index:1000;
+    left:31px;
+    top:17px;
+    position:absolute;
+}
