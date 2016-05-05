@@ -1,9 +1,9 @@
 <!-- resources/views/common/errors.blade.php -->
-
+<div id="alert-messages">
 @if (count($errors) > 0)
 	<!-- Form Error list -->
 	<div class="alert alert-danger">
-		<strong>Whoops! Something went wrong</strong>
+		<strong>Something went wrong</strong>
 		<br/><br/>
 
 		<ul>
@@ -13,3 +13,4 @@
 		</ul>
 	</div>
 @endif
+</div>

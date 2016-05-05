@@ -25,6 +25,13 @@ Route::group(['middleware'=>['web']], function(){
 	Route::delete('/task/{task}', 'TaskController@destroy');
 
 
+	Route::get('/contacts', 'ContactController@index');
+	Route::post('/contacts', 'ContactController@store');
+	Route::get('/contacts/{contact}', 'ContactController@contact');
+	Route::post('/contacts/{contact}', 'ContactController@update');
+	Route::delete('/contacts/{contact}', 'ContactController@destroy');
+
+
 	Route::get('/curl', 'CurlController@index');
 	Route::post('/curl', 'CurlController@send');
 

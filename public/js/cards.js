@@ -66,4 +66,4 @@ $(document).ready(function () {
         setTimeout(setCards, 3000);//display three cards
         setTimeout(swapCard, 10000);//begin swapping cards
         
-    });
+});
