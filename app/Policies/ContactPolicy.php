@@ -29,6 +29,6 @@ class ContactPolicy
      */
     public function destroy(User $user, Contact $contact)
     {
-        return $user->id === $contact->user_id;
+        return intval($user->id) === intval($contact->user_id);
     }
 }

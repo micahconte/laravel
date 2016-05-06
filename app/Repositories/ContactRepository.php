@@ -13,7 +13,7 @@ class ContactRepository
 	*/
 	public function forUser(User $user, $filter=null)
 	{
-		if(!empty($filter))
+		if(empty($filter))
 		{
 			return Contact::where('user_id', $user->id)
 						->orderBy('created_at', 'asc')

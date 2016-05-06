@@ -15,6 +15,8 @@ class VerifyCsrfToken extends BaseVerifier
         '/task',
         '/login',
         '/contacts',
-        '/curl'
+        '/curl',
+        '/github',
+        '/facebook'
     ];
 }

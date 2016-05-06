@@ -38,12 +38,12 @@ return [
     'github' => [
         'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect' => 'http://micahconte.info/github',
+        'redirect' => 'http://www.micahconte.info/github',
     ],
 
     'facebook' => [
-        'client_id' => 'your-facebook-app-id',
-        'client_secret' => 'your-facebook-app-secret',
-        'redirect' => 'http://your-callback-url',
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect' => 'http://www.micahconte.info/facebook',
     ],
 ];

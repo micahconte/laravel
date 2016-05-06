@@ -77,9 +77,34 @@ class AuthController extends Controller
     * Facebook Route
     *
     **/
-    public function facebook()
+    public function facebook(Request $request)
     {
-        
+        if($request->has('code'))
+        {
+            $user = $this->facebookCallback();
+            $loggedIn = \Auth::loginUsingId($user->id, true);
+            return \Redirect::to('/home');
+        }
+        else
+            return Socialite::driver('facebook')->redirect();
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return Response
+     */
+    public function facebookCallback()
+    {
+        $user = Socialite::driver('facebook')->user();
+
+        if($authUser = User::where('email', $user->email)->first())
+            return $authUser;
+
+        return User::create([
+            'name' => $user->name,
+            'email' => $user->email,
+        ]);
     }
 
     /**
@@ -89,7 +114,11 @@ class AuthController extends Controller
     public function github(Request $request)
     {
         if($request->has('code'))
-            $this->githubCallback();
+        {
+            $user = $this->githubCallback();
+            $loggedIn = \Auth::loginUsingId($user->id, true);
+            return \Redirect::to('/home');
+        }
         else
             return Socialite::driver('github')->redirect();
 
@@ -103,8 +132,14 @@ class AuthController extends Controller
     public function githubCallback()
     {
         $user = Socialite::driver('github')->user();
-        dd($user);
-        // $user->token;
+
+        if($authUser = User::where('email', $user->email)->first())
+            return $authUser;
+
+        return User::create([
+            'name' => $user->name,
+            'email' => $user->email,
+        ]);
     }
 
 
