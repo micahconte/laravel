@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use Socialite;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -40,6 +42,7 @@ class AuthController extends Controller
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -69,4 +72,40 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    /**
+    * Facebook Route
+    *
+    **/
+    public function facebook()
+    {
+        
+    }
+
+    /**
+    * Github Route
+    *
+    **/
+    public function github(Request $request)
+    {
+        if($request->has('code'))
+            $this->githubCallback();
+        else
+            return Socialite::driver('github')->redirect();
+
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return Response
+     */
+    public function githubCallback()
+    {
+        $user = Socialite::driver('github')->user();
+        dd($user);
+        // $user->token;
+    }
+
+
 }

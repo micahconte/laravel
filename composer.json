@@ -8,7 +8,9 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "ixudra/curl": "6.*",
-        "propaganistas/laravel-phone": "~2.0"
+        "propaganistas/laravel-phone": "~2.0",
+        "laravel/socialite": "~2.0",
+        "illuminate/html": "~4.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

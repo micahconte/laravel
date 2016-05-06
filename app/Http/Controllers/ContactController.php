@@ -125,6 +125,13 @@ class ContactController extends Controller
 	    return redirect('/contacts');
 	}
 
+    /**
+    * Filter used custom fields to top
+    *
+    * @param Request $request
+    *
+    * @return Array
+    **/
     private function filterCustoms($request)
     {
         //filter down custom array to removed skipped elements

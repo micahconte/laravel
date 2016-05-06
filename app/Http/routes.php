@@ -17,7 +17,14 @@ Route::group(['middleware'=>['web']], function(){
 
 	Route::get('/', function(){
 		return view('welcome');
+		// return Auth::check() ? "Welcome back ". Auth::user()->username : "Hi guest <a href=".url('login').">Login with GitHub</a>";
+
 	});
+
+
+	Route::get('/facebook', 'Auth\AuthController@facebook');
+	Route::get('/github', 'Auth\AuthController@github');
+
 	Route::get('/home', 'IndexController@home');
 
 	Route::get('/tasks', 'TaskController@index');
