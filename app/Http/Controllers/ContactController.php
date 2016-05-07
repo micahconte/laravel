@@ -75,8 +75,6 @@ class ContactController extends Controller
         return $contact;
     }
 
-
-
     /**
     * Update the given contact
     *
@@ -98,6 +96,7 @@ class ContactController extends Controller
         $contact->surname = $request->surname;
         $contact->email   = $request->email;
         $contact->phone   = $request->phone;
+
         $contact->custom1   = $customsArray[1];
         $contact->custom2   = $customsArray[2];
         $contact->custom3   = $customsArray[3];
@@ -135,28 +134,27 @@ class ContactController extends Controller
     private function filterCustoms($request)
     {
         //filter down custom array to removed skipped elements
-        $i=1;
         $customs = array(0);//save used elements to top of list-not using 0 element
         $empty = array();//separate empty customs
-        while($value = $request["custom$i"])
+        for($i=1;$i<6;$i++)
         {
+            $value = $request["custom$i"];
             if('' != $value)
                 array_push($customs, $value);
             else
                 array_push($empty, $value);
-            $i++;
         }
         return array_merge($customs, $empty);
     }
 
 
-    public function updateCampaignContact(Request $request, Contact $contact)
-    {
-        $this->campaignContact($contact, 'contact_edit', $request->user()->list_id);
-        return json_encode($contact);
-    }
-
-
+    /**
+    * Ajax request to add campaign contact
+    * @param Request $request
+    * @param Contact $contact
+    *
+    * @return Json $contact
+    **/
     public function addCampaignContact(Request $request, Contact $contact)
     {
         $subscriber = $this->campaignContact($contact, 'contact_add', $request->user()->list_id);
@@ -165,6 +163,28 @@ class ContactController extends Controller
         return json_encode($contact);
     }
 
+
+    /**
+    * Ajax request to update campaign contact
+    * @param Request $request
+    * @param Contact $contact
+    *
+    * @return Json $contact
+    **/
+    public function updateCampaignContact(Request $request, Contact $contact)
+    {
+        $this->campaignContact($contact, 'contact_edit', $request->user()->list_id);
+        return json_encode($contact);
+    }
+
+
+    /**
+    * Ajax request to delete campaign contact
+    * @param Request $request
+    * @param Contact $contact
+    *
+    * @return Json $contact
+    **/
     public function deleteCampaignContact(Request $request, Contact $contact)
     {
         $subscriber = $this->campaignContact($contact, 'contact_delete', $request->user()->list_id);
@@ -200,9 +220,10 @@ class ContactController extends Controller
             "tags"        => ""
         );
 
+        
         for($i=1;$i<6;$i++)
         {
-            $post['tags'] .= $contact["custom$i"].",";
+            $post['tags'] .= "{$contact["custom$i"]},";
         }
 
         // This section takes the input fields and converts them to the proper format

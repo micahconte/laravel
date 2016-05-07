@@ -120,12 +120,12 @@ $(document).ready(function(){
 
 				for(var i=1;i<6;i++)
 				{
-					if(data['custom'+i] != '')
+					if('' != data['custom'+i])
 					{
 						var custom = data['custom'+i];
 
 						$("#contact-custom"+i).parents('.form-group').removeClass('hide');
-						$('#contact-custom'+i).val(data['custom'+i]);
+						$('#contact-custom'+i).val(custom);
 					}
 					else
 						$("#contact-custom"+i).parents('.form-group').addClass('hide');
@@ -165,10 +165,10 @@ $(document).ready(function(){
 				_token: $('#token').val(),
 			},
 			success:function(data,status,jqxhr){
-				console.log(data);
+				// console.log(data);
 			},
 			error:function(data,status,jqxhr){
-				console.log(data);
+				// console.log(data);
 			}
 		});
 	}
