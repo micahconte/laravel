@@ -140,7 +140,7 @@ class ContactController extends Controller
         $empty = array();//separate empty customs
         while($value = $request["custom$i"])
         {
-            if($value!=':')
+            if('' != $value)
                 array_push($customs, $value);
             else
                 array_push($empty, $value);
@@ -202,11 +202,7 @@ class ContactController extends Controller
 
         for($i=1;$i<6;$i++)
         {
-            $custArr = explode(':',$contact["custom$i"]);
-            if('' != $custArr[0])
-            {
-                $post['tags'] .= "{$custArr[0]},";
-            }
+            $post['tags'] .= $contact["custom$i"].",";
         }
 
         // This section takes the input fields and converts them to the proper format

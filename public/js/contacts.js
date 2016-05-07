@@ -6,13 +6,12 @@ $(document).ready(function(){
 
 	$(".modal-body").on("click", ".hideField", function(){
 		var customId = $(this).data("customId");
-		$("#contact-customName"+customId).val('');
-		$("#contact-customValue"+customId).val('');
+		$("#contact-custom"+customId).val('');
 		$(this).parents('.form-group').addClass('hide');
 	});
 
 	$(".modal-body").on("click", ".addField", function(){
-		$("#contact-customValue"+$(this).data("customId")).parents('.form-group').removeClass('hide');
+		$("#contact-custom"+$(this).data("customId")).parents('.form-group').removeClass('hide');
 	});
 
 	$("#addContact").on("click", function(){
@@ -33,11 +32,11 @@ $(document).ready(function(){
 				surname: $('#contact-surname').val(),
 				phone: $('#contact-phone').val(),
 				email: $('#contact-email').val(),
-				custom1: $('#contact-customName1').val()+":"+$('#contact-customValue1').val(),
-				custom2: $('#contact-customName2').val()+":"+$('#contact-customValue2').val(),
-				custom3: $('#contact-customName3').val()+":"+$('#contact-customValue3').val(),
-				custom4: $('#contact-customName4').val()+":"+$('#contact-customValue4').val(),
-				custom5: $('#contact-customName5').val()+":"+$('#contact-customValue5').val(),
+				custom1: $('#contact-custom1').val(),
+				custom2: $('#contact-custom2').val(),
+				custom3: $('#contact-custom3').val(),
+				custom4: $('#contact-custom4').val(),
+				custom5: $('#contact-custom5').val(),
 				_token: $('#token').val()
 			},
 			success:function(data,status,jqxhr){
@@ -53,16 +52,11 @@ $(document).ready(function(){
 									email: $('#contact-email').val(),
 									token: $('#token').val(),
 
-									customName1: $('#contact-customName1').val(),
-									customName2: $('#contact-customName2').val(),
-									customName3: $('#contact-customName3').val(),
-									customName4: $('#contact-customName4').val(),
-									customName5: $('#contact-customName5').val(),
-									customValue1: $('#contact-customValue1').val(),
-									customValue2: $('#contact-customValue2').val(),
-									customValue3: $('#contact-customValue3').val(),
-									customValue4: $('#contact-customValue4').val(),
-									customValue5: $('#contact-customValue5').val(),
+									custom1: $('#contact-custom1').val(),
+									custom2: $('#contact-custom2').val(),
+									custom3: $('#contact-custom3').val(),
+									custom4: $('#contact-custom4').val(),
+									custom5: $('#contact-custom5').val(),
 				
 									id: data.id
 							})
@@ -79,16 +73,11 @@ $(document).ready(function(){
 								email: $('#contact-email').val(),
 								token: $('#token').val(),
 									
-								customName1: $('#contact-customName1').val(),
-								customName2: $('#contact-customName2').val(),
-								customName3: $('#contact-customName3').val(),
-								customName4: $('#contact-customName4').val(),
-								customName5: $('#contact-customName5').val(),
-								customValue1: $('#contact-customValue1').val(),
-								customValue2: $('#contact-customValue2').val(),
-								customValue3: $('#contact-customValue3').val(),
-								customValue4: $('#contact-customValue4').val(),
-								customValue5: $('#contact-customValue5').val(),
+								custom1: $('#contact-custom1').val(),
+								custom2: $('#contact-custom2').val(),
+								custom3: $('#contact-custom3').val(),
+								custom4: $('#contact-custom4').val(),
+								custom5: $('#contact-custom5').val(),
 
 								id: data.id
 
@@ -131,16 +120,15 @@ $(document).ready(function(){
 
 				for(var i=1;i<6;i++)
 				{
-					if(data['custom'+i] != ':' && data['custom'+i] != '')
+					if(data['custom'+i] != '')
 					{
-						var custom = data['custom'+i].split(':');
+						var custom = data['custom'+i];
 
-						$("#contact-customValue"+i).parents('.form-group').removeClass('hide');
-						$('#contact-customName'+i).val(custom[0]);
-						$('#contact-customValue'+i).val(custom[1]);
+						$("#contact-custom"+i).parents('.form-group').removeClass('hide');
+						$('#contact-custom'+i).val(data['custom'+i]);
 					}
 					else
-						$("#contact-customValue"+i).parents('.form-group').addClass('hide');
+						$("#contact-custom"+i).parents('.form-group').addClass('hide');
 				}
 			},
 			error:function(data,status,jqxhr){
@@ -217,9 +205,8 @@ $(document).ready(function(){
 
 		for(var i=1;i<6;i++)
 		{
-			$('#contact-customName'+i).val('');
-			$('#contact-customValue'+i).val('');
-			$('#contact-customValue'+i).parents('.form-group').addClass('hide');
+			$('#contact-custom'+i).val('');
+			$('#contact-custom'+i).parents('.form-group').addClass('hide');
 		}
 
 		$('#alert-messages').html('');

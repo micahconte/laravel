@@ -65,11 +65,8 @@
 
                                             <!-- custom fields -->
                                             <div class="form-group hide">
-                                                <div class="col-sm-offset-1 col-sm-2 control-label">
-                                                    <input type="text" name="customName" id="contact-customName1" class="form-control">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <input type="text" name="customValue" id="contact-customValue1" class="form-control">
+                                                <div class="col-sm-offset-3 col-sm-6">
+                                                    <input type="text" name="custom1" id="contact-custom1" class="form-control">
                                                 </div>
                                                 <div class="col-sm-2">
                                                     <button type="button" data-custom-id="1" class="hideField btn btn-default">-</button>
@@ -77,11 +74,8 @@
                                                 </div>
                                             </div>
                                             <div class="form-group hide">
-                                                <div class="col-sm-offset-1 col-sm-2 control-label">
-                                                    <input type="text" name="customName" id="contact-customName2" class="form-control">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <input type="text" name="customValue" id="contact-customValue2" class="form-control">
+                                                <div class="col-sm-offset-3 col-sm-6">
+                                                    <input type="text" name="custom2" id="contact-custom2" class="form-control">
                                                 </div>
                                                 <div class="col-sm-2">
                                                     <button type="button" data-custom-id="2" class="hideField btn btn-default">-</button>
@@ -89,11 +83,8 @@
                                                 </div>
                                             </div>
                                             <div class="form-group hide">
-                                                <div class="col-sm-offset-1 col-sm-2 control-label">
-                                                    <input type="text" name="customName" id="contact-customName3" class="form-control">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <input type="text" name="customValue" id="contact-customValue3" class="form-control">
+                                                <div class="col-sm-offset-3 col-sm-6">
+                                                    <input type="text" name="custom3" id="contact-custom3" class="form-control">
                                                 </div>
                                                 <div class="col-sm-2">
                                                     <button type="button" data-custom-id="3" class="hideField btn btn-default">-</button>
@@ -101,11 +92,8 @@
                                                 </div>
                                             </div>
                                             <div class="form-group hide">
-                                                <div class="col-sm-offset-1 col-sm-2 control-label">
-                                                    <input type="text" name="customName" id="contact-customName4" class="form-control">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <input type="text" name="customValue" id="contact-customValue4" class="form-control">
+                                                <div class="col-sm-offset-3 col-sm-6">
+                                                    <input type="text" name="custom4" id="contact-custom4" class="form-control">
                                                 </div>
                                                 <div class="col-sm-2">
                                                     <button type="button" data-custom-id="4" class="hideField btn btn-default">-</button>
@@ -113,11 +101,8 @@
                                                 </div>
                                             </div>
                                             <div class="form-group hide">
-                                                <div class="col-sm-offset-1 col-sm-2 control-label">
-                                                    <input type="text" name="customName" id="contact-customName5" class="form-control">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <input type="text" name="customValue" id="contact-customValue5" class="form-control">
+                                                <div class="col-sm-offset-3 col-sm-6">
+                                                    <input type="text" name="custom5" id="contact-custom5" class="form-control">
                                                 </div>
                                                 <div class="col-sm-2">
                                                     <button type="button" data-custom-id="5" class="hideField btn btn-default">-</button>
