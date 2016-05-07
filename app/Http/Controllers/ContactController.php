@@ -257,4 +257,30 @@ class ContactController extends Controller
         curl_close($request); // close curl object
         return $response;
     }
+
+    public function datatable(Request $request)
+    {
+        $vals = json_decode(json_encode($request->search));
+
+        $contacts = Contact::select('id','name','surname','email','phone')
+                                    ->where('name', 'like', '%'.$vals->value.'%')
+                                    ->orWhere('surname', 'like', '%'.$vals->value.'%')
+                                    ->orWhere('email', 'like', '%'.$vals->value.'%')
+                                    ->orWhere('phone', 'like', '%'.$vals->value.'%')
+                                    ->get();
+
+        $data = array();
+        foreach($contacts as $key => $value)
+        {
+            $data[$key] = array(
+                $value->name,
+                $value->surname,
+                $value->email,
+                $value->phone,
+                "<button type='button' data-toggle='modal' data-target='#myModal' id='contact-".$value->id."' data-contact-id='".$value->id."' class='contact-edit btn btn-warning'> Edit </button>",
+                "<button type='button' class='contact-delete btn btn-danger' data-contact-id='".$value->id."'><i class='fa fa-trash'></i> Delete </button>"
+            );
+        }
+        return json_encode(array('data'=>$data));
+    }
 }

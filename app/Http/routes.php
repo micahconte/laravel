@@ -43,6 +43,7 @@ Route::group(['middleware'=>['web']], function(){
 	Route::post('/campaign/contact/{contact}', 'ContactController@updateCampaignContact');
 	Route::get('/campaign/list/{user}', 	  'Auth\AuthController@addCampaignList');
 
+	Route::get('/datatable', 'ContactController@datatable');
 
 	Route::get('/curl', 'CurlController@index');
 	Route::post('/curl', 'CurlController@send');
