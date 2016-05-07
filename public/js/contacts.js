@@ -94,7 +94,6 @@ $(document).ready(function(){
 					$('.close').click();
 			},
 			error:function(data,status,jqxhr){
-
 				var errors = $.parseJSON(data.responseText);
 				var message = '';
 				for(error in errors){
@@ -166,6 +165,7 @@ $(document).ready(function(){
 		{
 			$('#contact-customName'+i).val('');
 			$('#contact-customValue'+i).val('');
+			$('#contact-customValue'+i).parents('.form-group').addClass('hide');
 		}
 
 		$('#alert-messages').html('');

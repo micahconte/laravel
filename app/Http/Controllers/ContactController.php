@@ -41,11 +41,13 @@ class ContactController extends Controller
     public function store(Request $request)
     {
     	$validation = $this->validate($request, [
-    		'name'    => 'required|max:255|min:2',
+    		'name'    => 'required|max:55|min:2',
     		'surname' => 'max:255|min:2',
-    		'email'   => 'email|max:255|min:5',
-    		'phone'   => 'required|phone:US|max:15|min:7'
+    		'email'   => 'required|email|unique:contacts,email|max:55|min:5',
+    		'phone'   => 'phone:US|max:20|min:7'
     	]);
+
+        $subscriber = $this->campaignContact($request, 'contact_add', $request->user()->list_id);
 
     	$insert = $request->user()->contacts()->create([
     		'name'      => $request->name,
@@ -56,10 +58,10 @@ class ContactController extends Controller
             'custom2'   => $request->custom2,
             'custom3'   => $request->custom3,
             'custom4'   => $request->custom4,
-            'custom5'   => $request->custom5
+            'custom5'   => $request->custom5,
+            'subscriber_id' => $subscriber->subscriber_id
     	]);
-        // create campaign contact
-        // $this->addCampaignContact($insert);
+
         return json_encode(array('id'=> $insert->id));
     }
 
@@ -88,10 +90,10 @@ class ContactController extends Controller
     public function update(Request $request, Contact $contact)
     {
         $validation = $this->validate($request, [
-            'name'    => 'required|max:255|min:2',
+            'name'    => 'required|max:55|min:2',
             'surname' => 'max:255|min:2',
-            'email'   => 'email|max:255|min:5',
-            'phone'   => 'required|phone:US|max:15|min:7'
+            'email'   => 'required|email|max:55|min:5',
+            'phone'   => 'phone:US|max:20|min:7'
         ]);
         $customsArray = $this->filterCustoms($request);
 
@@ -105,6 +107,8 @@ class ContactController extends Controller
         $contact->custom4   = $customsArray[4];
         $contact->custom5   = $customsArray[5];
         $contact->save();
+
+        $this->campaignContact($contact, 'contact_edit', $request->user()->list_id);
 
         return json_encode($contact);
     }
@@ -122,6 +126,8 @@ class ContactController extends Controller
     	$this->authorize('destroy', $contact);
     	
 	    $contact->delete();
+
+        $this->campaignContact($contact, 'contact_delete');
 
 	    return redirect('/contacts');
 	}
@@ -157,38 +163,35 @@ class ContactController extends Controller
     * @param Contact $contact
     *
     **/
-    private function addCampaignContact(Contact $contact)
+    private function campaignContact($contact, $action, $list=1)
     {
-
-        // By default, this sample code is designed to get the result from your ActiveCampaign installation and print out the result
         $url = 'https://micahconte.api-us1.com';
 
-
         $params = array(
-
             // the API Key
             'api_key'      => env('ACTIVECAMPAIGN_API_KEY'),
-            'api_action'   => 'contact_add',
-
-            // define the type of output you wish to get back
+            'api_action'   => $action,
             'api_output'   => 'json',
         );
 
         // here we define the data we are posting in order to perform an update
         $post = array(
-            'first_name'  => $contact->name, 
-            'last_name'   => $contact->surname,
-            'email'       => $contact->email, 
-            'id'          => $contact->id, 
-            'phone'       => $contact->phone, 
+            'id'          => $contact['subscriber_id'],
+            'first_name'  => $contact['name'], 
+            'last_name'   => $contact['surname'],
+            'email'       => $contact['email'], 
+            'phone'       => $contact['phone'],
+            "p[$list]"    => $list,
+            "status[1]"   => "1",
+            "tags"        => ""
         );
 
         for($i=1;$i<6;$i++)
         {
-            $custArr = $contact['custom'+$i].split(':');
+            $custArr = explode(':',$contact["custom$i"]);
             if('' != $custArr[0])
             {
-                $post[$custArr[0]] = $custArr[1];
+                $post['tags'] .= "{$custArr[0]},";
             }
         }
 
@@ -215,8 +218,9 @@ class ContactController extends Controller
         //curl_setopt($request, CURLOPT_SSL_VERIFYPEER, FALSE); // uncomment if you get no gateway response and are using HTTPS
         curl_setopt($request, CURLOPT_FOLLOWLOCATION, true);
 
-        $response = (string)curl_exec($request); // execute curl post and store results in $response
+        $response = json_decode(curl_exec($request)); // execute curl post and store results in $response
 
         curl_close($request); // close curl object
+        return $response;
     }
 }

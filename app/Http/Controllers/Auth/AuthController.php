@@ -66,10 +66,12 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        $list = $this->campaignList($data);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'list_id' => $list->id
         ]);
     }
 
@@ -104,6 +106,7 @@ class AuthController extends Controller
         return User::create([
             'name' => $user->name,
             'email' => $user->email,
+            'password' => bcrypt('facebook'.microtime())
         ]);
     }
 
@@ -139,8 +142,66 @@ class AuthController extends Controller
         return User::create([
             'name' => $user->name,
             'email' => $user->email,
+            'password' => bcrypt('github'.microtime())
         ]);
     }
 
+    private function campaignList($user)
+    {
+        $url = 'https://micahconte.api-us1.com';
+
+        $params = array(
+            'api_key'      => env('ACTIVECAMPAIGN_API_KEY'),
+            'api_action'   => 'list_add',
+            'api_output'   => 'json',
+        );
+
+        // here we define the data we are posting in order to perform an update
+        $post = array(
+            'id'                       => 1, // adds a new one
+            'name'                     => $user['name'], // list name
+            'subscription_notify'      => $user['email'], // comma-separated list of email addresses to notify on new subscriptions to this list
+            'unsubscription_notify'    => $user['email'], // comma-separated list of email addresses to notify on any unsubscriptions from this list
+            'to_name'                  => $user['name'] != '' ? $user['name'] : "Recipient", // if contact doesn't enter a name, use this
+            'carboncopy'               => '', // comma-separated list of email addresses to send a copy of all mailings to upon send
+            
+            // Sender information (all fields below) required
+            'sender_name'       => 'micahconte', // Company (or Organization)
+            'sender_addr1'      => '1 happy st', // Address
+            'sender_zip'        => '92591', // Zip or Postal Code
+            'sender_city'       => 'temecula', // City
+            'sender_country'    => 'USA', // Country
+            'sender_url'        => 'http://www.micahconte.info', // URL
+            'sender_reminder'   => 'Hi', // Sender's reminder to contacts
+        );
+
+        // This section takes the input fields and converts them to the proper format
+        $query = "";
+        foreach( $params as $key => $value ) $query .= $key . '=' . urlencode($value) . '&';
+        $query = rtrim($query, '& ');
+
+        // This section takes the input data and converts it to the proper format
+        $data = "";
+        foreach( $post as $key => $value ) $data .= $key . '=' . urlencode($value) . '&';
+        $data = rtrim($data, '& ');
+
+        // clean up the url
+        $url = rtrim($url, '/ ');
+
+        // define a final API request - GET
+        $api = $url . '/admin/api.php?' . $query;
+
+        $request = curl_init($api); // initiate curl object
+        curl_setopt($request, CURLOPT_HEADER, 0); // set to 0 to eliminate header info from response
+        curl_setopt($request, CURLOPT_RETURNTRANSFER, 1); // Returns response data instead of TRUE(1)
+        curl_setopt($request, CURLOPT_POSTFIELDS, $data); // use HTTP POST to send form data
+        //curl_setopt($request, CURLOPT_SSL_VERIFYPEER, FALSE); // uncomment if you get no gateway response and are using HTTPS
+        curl_setopt($request, CURLOPT_FOLLOWLOCATION, true);
+
+        $response = json_decode(curl_exec($request)); // execute curl post and store results in $response
+
+        curl_close($request); // close curl object
+        return $response;
+    }
 
 }
