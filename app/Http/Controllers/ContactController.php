@@ -47,8 +47,6 @@ class ContactController extends Controller
     		'phone'   => 'phone:US|max:20|min:7'
     	]);
 
-        $subscriber = $this->campaignContact($request, 'contact_add', $request->user()->list_id);
-
     	$insert = $request->user()->contacts()->create([
     		'name'      => $request->name,
     		'surname'   => $request->surname,
@@ -59,7 +57,6 @@ class ContactController extends Controller
             'custom3'   => $request->custom3,
             'custom4'   => $request->custom4,
             'custom5'   => $request->custom5,
-            'subscriber_id' => $subscriber->subscriber_id
     	]);
 
         return json_encode(array('id'=> $insert->id));
@@ -108,8 +105,6 @@ class ContactController extends Controller
         $contact->custom5   = $customsArray[5];
         $contact->save();
 
-        $this->campaignContact($contact, 'contact_edit', $request->user()->list_id);
-
         return json_encode($contact);
     }
 
@@ -127,9 +122,7 @@ class ContactController extends Controller
     	
 	    $contact->delete();
 
-        $this->campaignContact($contact, 'contact_delete');
-
-	    return redirect('/contacts');
+        $this->campaignContact($contact, 'contact_delete', $request->user()->list_id);
 	}
 
     /**
@@ -157,13 +150,34 @@ class ContactController extends Controller
     }
 
 
+    public function updateCampaignContact(Request $request, Contact $contact)
+    {
+        $this->campaignContact($contact, 'contact_edit', $request->user()->list_id);
+        return json_encode($contact);
+    }
+
+
+    public function addCampaignContact(Request $request, Contact $contact)
+    {
+        $subscriber = $this->campaignContact($contact, 'contact_add', $request->user()->list_id);
+        $contact->subscriber_id = $subscriber->subscriber_id;// add subscriber id to contact
+        $contact->save();
+        return json_encode($contact);
+    }
+
+    public function deleteCampaignContact(Request $request, Contact $contact)
+    {
+        $subscriber = $this->campaignContact($contact, 'contact_delete', $request->user()->list_id);
+        return json_encode($contact);
+    }
+
     /**
     * Add contact to active campaign
     *
     * @param Contact $contact
     *
     **/
-    private function campaignContact($contact, $action, $list=1)
+    private function campaignContact($contact, $action, $list)
     {
         $url = 'https://micahconte.api-us1.com';
 

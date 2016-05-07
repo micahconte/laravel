@@ -44,6 +44,7 @@ $(document).ready(function(){
 					$(".dataTables_empty").parent().hide();// hide empty result td
 					
 					if($('#contact-id').val() != '')
+					{
 						$('#contact-'+data.id).parents('tr').html(
 							contactRow({
 									name: $('#contact-name').val(),
@@ -66,7 +67,10 @@ $(document).ready(function(){
 									id: data.id
 							})
 						);//replace existing row if updating
+						updateCampaignContact(data.id);
+					}
 					else
+					{
 						$('#contact-datatable tbody').append("<tr>"+
 							contactRow({
 								name: $('#contact-name').val(),
@@ -90,6 +94,9 @@ $(document).ready(function(){
 
 							})+"</tr>"
 						);//add new row if creating
+
+						addCampaignContact(data.id);
+					}
 					clearModal();
 					$('.close').click();
 			},
@@ -148,9 +155,56 @@ $(document).ready(function(){
 		});
 	});
 
+	$("#contact-datatable").on("click", ".contact-delete", function(){
+		$.ajax({
+			type: "DELETE",
+			url: "/contacts/"+$(this).data('contactId'),
+			dataType: 'json',
+			data: {
+				_token: $('#token').val(),
+			},
+		});
+		$(this).parents('tr').addClass('hide');
+	});
+
+	function addCampaignContact(id)
+	{
+		$.ajax({
+			type: "GET",
+			url: "/campaign/contact/"+id,
+			dataType: 'json',
+			data: {
+				_token: $('#token').val(),
+			},
+			success:function(data,status,jqxhr){
+				console.log(data);
+			},
+			error:function(data,status,jqxhr){
+				console.log(data);
+			}
+		});
+	}
+	function updateCampaignContact(id)
+	{
+		$.ajax({
+			type: "POST",
+			url: "/campaign/contact/"+id,
+			dataType: 'json',
+			data: {
+				_token: $('#token').val(),
+			},
+			success:function(data,status,jqxhr){
+				// console.log(data);
+			},
+			error:function(data,status,jqxhr){
+				// console.log(data);
+			}
+		});
+	}
+
 	function contactRow(data)
 	{
-		return "<td class='table-text'><div>"+data.name+"</div></td><td class='table-text'><div>"+data.surname+"</div></td><td class='table-text'><div>"+data.phone+"</div></td><td class='table-text'><div>"+data.email+"</div></td><td><button type='button' data-toggle='modal' data-target='#myModal' id='contact-"+data.id+"' data-contact-id='"+data.id+"' class='contact-edit btn btn-warning'> Edit </button></td><td><form action='/contacts/"+data.id+"' method='POST'><input type='hidden' name='_token' value='"+data.token+"'><input type='hidden' name='_method' value='DELETE'><button type='submit' class='btn btn-danger'><i class='fa fa-trash'></i> Delete </button></form></td>";
+		return "<td class='table-text'><div>"+data.name+"</div></td><td class='table-text'><div>"+data.surname+"</div></td><td class='table-text'><div>"+data.phone+"</div></td><td class='table-text'><div>"+data.email+"</div></td><td><button type='button' data-toggle='modal' data-target='#myModal' id='contact-"+data.id+"' data-contact-id='"+data.id+"' class='contact-edit btn btn-warning'> Edit </button></td><td><button type='button' class='contact-delete btn btn-danger' data-contact-id='"+data.id+"'><i class='fa fa-trash'></i> Delete </button></td>";
 
 	}
 	function clearModal()

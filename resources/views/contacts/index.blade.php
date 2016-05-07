@@ -192,16 +192,9 @@
                                                         <button type="button" id="contact-{{ $contact->id }}" data-contact-id="{{ $contact->id }}" data-toggle="modal" data-target="#myModal" class="contact-edit btn btn-warning">Edit</button>
                                                     </td>
                         							<td>
-
-                        								<!-- Delete -->
-                        								<form action="{{ url('contacts/'.$contact->id) }}" method="POST">
-                                                            <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
-                        									{!! method_field('DELETE') !!}
-
-                        									<button type="submit" class="btn btn-danger">
-                        										<i class="fa fa-trash"></i> Delete
-                        									</button>
-                        								</form>
+                                                        <button type="button" class="contact-delete btn btn-danger" data-contact-id="{{ $contact->id }}">
+                        									<i class="fa fa-trash"></i> Delete
+                        								</button>
                         							</td>
                         						</tr>
                         					@endforeach

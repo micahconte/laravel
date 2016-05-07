@@ -67,12 +67,15 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         $list = $this->campaignList($data);
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'list_id' => $list->id
-        ]);
+
+        if($list->result_code)
+            return User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'list_id' => $list->id
+            ]);
+        return $list;
     }
 
     /**
@@ -103,11 +106,16 @@ class AuthController extends Controller
         if($authUser = User::where('email', $user->email)->first())
             return $authUser;
 
-        return User::create([
-            'name' => $user->name,
-            'email' => $user->email,
-            'password' => bcrypt('facebook'.microtime())
-        ]);
+        $list = $this->campaignList($user);
+
+        if($list->result_code)
+            return User::create([
+                'name' => $user['name'],
+                'email' => $user['email'],
+                'password' => bcrypt('facebook'.microtime()),
+                'list_id' => $list->id
+            ]);
+        return $list;
     }
 
     /**
@@ -138,12 +146,16 @@ class AuthController extends Controller
 
         if($authUser = User::where('email', $user->email)->first())
             return $authUser;
+        $list = $this->campaignList($user);
 
-        return User::create([
-            'name' => $user->name,
-            'email' => $user->email,
-            'password' => bcrypt('github'.microtime())
-        ]);
+        if($list->result_code)
+            return User::create([
+                'name' => $user['name'],
+                'email' => $user['email'],
+                'password' => bcrypt('github'.microtime()),
+                'list_id' => $list->id
+            ]);
+        return $list;
     }
 
     private function campaignList($user)

@@ -39,6 +39,11 @@ Route::group(['middleware'=>['web']], function(){
 	Route::delete('/contacts/{contact}', 'ContactController@destroy');
 
 
+	Route::get('/campaign/contact/{contact}', 'ContactController@addCampaignContact');
+	Route::post('/campaign/contact/{contact}', 'ContactController@updateCampaignContact');
+	Route::get('/campaign/list/{user}', 	  'Auth\AuthController@addCampaignList');
+
+
 	Route::get('/curl', 'CurlController@index');
 	Route::post('/curl', 'CurlController@send');
 
