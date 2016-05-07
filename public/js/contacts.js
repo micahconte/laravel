@@ -147,15 +147,18 @@ $(document).ready(function(){
 	});
 
 	$("#contact-datatable").on("click", ".contact-delete", function(){
-		$.ajax({
-			type: "DELETE",
-			url: "/contacts/"+$(this).data('contactId'),
-			dataType: 'json',
-			data: {
-				_token: $('#token').val(),
-			},
-		});
-		$(this).parents('tr').addClass('hide');
+
+	    if (confirm("Do you really want to delete?")){
+			$.ajax({
+				type: "DELETE",
+				url: "/contacts/"+$(this).data('contactId'),
+				dataType: 'json',
+				data: {
+					_token: $('#token').val(),
+				},
+			});
+			$(this).parents('tr').addClass('hide');
+	    }
 	});
 
 	function addCampaignContact(id)

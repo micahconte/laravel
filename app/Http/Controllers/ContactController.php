@@ -176,9 +176,13 @@ class ContactController extends Controller
     **/
     public function updateCampaignContact(Request $request, Contact $contact)
     {
-        $this->campaignContact($request->session()->get('old_contact'), 'contact_tag_remove', $request->user()->list_id);
+        if($request->session()->has('old_contact'))
+        {
+            // delete old tags to prevent duplicates
+            $this->campaignContact($request->session()->get('old_contact'), 'contact_tag_remove', $request->user()->list_id);
+            $request->session()->forget('old_contact');
+        }
         $this->campaignContact($contact, 'contact_edit', $request->user()->list_id);
-        $request->session()->forget('old_contact');
         return json_encode($contact);
     }
 
