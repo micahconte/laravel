@@ -72,7 +72,8 @@ class ContactController extends Controller
     */
     public function contact(Request $request, Contact $contact)
     {
-        return $contact;
+        if($request->user()->id == $contact->user_id)
+            return $contact;
     }
 
     /**
@@ -265,7 +266,7 @@ class ContactController extends Controller
         {
             $vals = json_decode(json_encode($request->search));
 
-            $contacts = Contact::select('id','name','surname','email','phone')
+            $contacts = $request->user()->contacts()->select('id','user_id','name','surname','email','phone')
                                     ->where('name', 'like', '%'.$vals->value.'%')
                                     ->orWhere('surname', 'like', '%'.$vals->value.'%')
                                     ->orWhere('email', 'like', '%'.$vals->value.'%')
@@ -274,14 +275,15 @@ class ContactController extends Controller
 
             foreach($contacts as $key => $value)
             {
-                $data[$key] = array(
-                    $value->name,
-                    $value->surname,
-                    $value->email,
-                    $value->phone,
-                    "<button type='button' data-toggle='modal' data-target='#myModal' id='contact-".$value->id."' data-contact-id='".$value->id."' class='contact-edit btn btn-warning'> Edit </button>",
-                    "<button type='button' class='contact-delete btn btn-danger' data-contact-id='".$value->id."'><i class='fa fa-trash'></i> Delete </button>"
-                );
+                if($request->user()->id == $value->user_id)
+                    $data[$key] = array(
+                        $value->name,
+                        $value->surname,
+                        $value->email,
+                        $value->phone,
+                        "<button type='button' data-toggle='modal' data-target='#myModal' id='contact-".$value->id."' data-contact-id='".$value->id."' class='contact-edit btn btn-warning'> Edit </button>",
+                        "<button type='button' class='contact-delete btn btn-danger' data-contact-id='".$value->id."'><i class='fa fa-trash'></i> Delete </button>"
+                    );
             }
         }
         return json_encode(array('data'=>$data));
