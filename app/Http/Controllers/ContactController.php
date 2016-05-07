@@ -92,6 +92,8 @@ class ContactController extends Controller
         ]);
         $customsArray = $this->filterCustoms($request);
 
+        $request->session()->put('old_contact', $contact);
+
         $contact->name    = $request->name;
         $contact->surname = $request->surname;
         $contact->email   = $request->email;
@@ -173,7 +175,9 @@ class ContactController extends Controller
     **/
     public function updateCampaignContact(Request $request, Contact $contact)
     {
+        $this->campaignContact($request->session()->get('old_contact'), 'contact_tag_remove', $request->user()->list_id);
         $this->campaignContact($contact, 'contact_edit', $request->user()->list_id);
+        $request->session()->forget('old_contact');
         return json_encode($contact);
     }
 
@@ -216,14 +220,13 @@ class ContactController extends Controller
             'email'       => $contact['email'], 
             'phone'       => $contact['phone'],
             "p[$list]"    => $list,
-            "status[1]"   => "1",
-            "tags"        => ""
+            "status[1]"   => "1"
         );
 
         
         for($i=1;$i<6;$i++)
         {
-            $post['tags'] .= "{$contact["custom$i"]},";
+            $post["tags[$i]"] = "{$contact["custom$i"]},";
         }
 
         // This section takes the input fields and converts them to the proper format
