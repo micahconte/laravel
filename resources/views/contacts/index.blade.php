@@ -158,31 +158,6 @@
 
                         				<!-- Table Body -->
                         				<tbody>
-                        					@foreach ($contacts as $contact)
-                        						<tr>
-                        							<!-- Contact Name -->
-                                                    <td class="table-text">
-                                                        <div>{{ $contact->name }}</div>
-                                                    </td>
-                                                    <td class="table-text">
-                                                        <div>{{ $contact->surname }}</div>
-                                                    </td>
-                                                    <td class="table-text">
-                                                        <div>{{ $contact->phone }}</div>
-                                                    </td>
-                                                    <td class="table-text">
-                                                        <div>{{ $contact->email }}</div>
-                                                    </td>
-                                                    <td>
-                                                        <button type="button" id="contact-{{ $contact->id }}" data-contact-id="{{ $contact->id }}" data-toggle="modal" data-target="#myModal" class="contact-edit btn btn-warning">Edit</button>
-                                                    </td>
-                        							<td>
-                                                        <button type="button" class="contact-delete btn btn-danger" data-contact-id="{{ $contact->id }}">
-                        									<i class="fa fa-trash"></i> Delete
-                        								</button>
-                        							</td>
-                        						</tr>
-                        					@endforeach
                         				</tbody>
                         			</table>
                         		</div>
