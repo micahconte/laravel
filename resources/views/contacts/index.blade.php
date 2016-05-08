@@ -58,7 +58,7 @@
                                                         <input type="text" name="email" id="contact-email" class="form-control">
                                                     </div>
                                                     <div class="col-sm-1">
-                                                        <button type="button" data-custom-id="1" class="addField btn btn-default pull-right">+</buttton>
+                                                        <button type="button" data-custom-id="1" class="addField btn btn-default pull-left"><i class="fa fa-plus"></i></buttton>
                                                     </div>
                                                 </div>
                                             </div>
@@ -68,36 +68,36 @@
                                                 <div class="col-sm-offset-3 col-sm-6">
                                                     <input type="text" name="custom1" id="contact-custom1" class="form-control">
                                                 </div>
-                                                <div class="col-sm-2">
-                                                    <button type="button" data-custom-id="1" class="hideField btn btn-default">-</button>
-                                                    <button type="button" data-custom-id="2" class="addField btn btn-default pull-right">+</buttton>
+                                                <div class="col-sm-3">
+                                                    <button type="button" data-custom-id="2" class="addField btn btn-default pull-left"><i class="fa fa-plus"></i></buttton>
+                                                    <button type="button" data-custom-id="1" class="hideField btn btn-default pull-left"><i class="fa fa-minus"></i></button>
                                                 </div>
                                             </div>
                                             <div class="form-group hide">
                                                 <div class="col-sm-offset-3 col-sm-6">
                                                     <input type="text" name="custom2" id="contact-custom2" class="form-control">
                                                 </div>
-                                                <div class="col-sm-2">
-                                                    <button type="button" data-custom-id="2" class="hideField btn btn-default">-</button>
-                                                    <button type="button" data-custom-id="3" class="addField btn btn-default pull-right">+</buttton>
+                                                <div class="col-sm-3">
+                                                    <button type="button" data-custom-id="3" class="addField btn btn-default pull-left"><i class="fa fa-plus"></i></buttton>
+                                                    <button type="button" data-custom-id="2" class="hideField btn btn-default pull-left"><i class="fa fa-minus"></i></button>
                                                 </div>
                                             </div>
                                             <div class="form-group hide">
                                                 <div class="col-sm-offset-3 col-sm-6">
                                                     <input type="text" name="custom3" id="contact-custom3" class="form-control">
                                                 </div>
-                                                <div class="col-sm-2">
-                                                    <button type="button" data-custom-id="3" class="hideField btn btn-default">-</button>
-                                                    <button type="button" data-custom-id="4" class="addField btn btn-default pull-right">+</buttton>
+                                                <div class="col-sm-3">
+                                                    <button type="button" data-custom-id="4" class="addField btn btn-default pull-left"><i class="fa fa-plus"></i></buttton>
+                                                    <button type="button" data-custom-id="3" class="hideField btn btn-default pull-left"><i class="fa fa-minus"></i></button>
                                                 </div>
                                             </div>
                                             <div class="form-group hide">
                                                 <div class="col-sm-offset-3 col-sm-6">
                                                     <input type="text" name="custom4" id="contact-custom4" class="form-control">
                                                 </div>
-                                                <div class="col-sm-2">
-                                                    <button type="button" data-custom-id="4" class="hideField btn btn-default">-</button>
-                                                    <button type="button" data-custom-id="5" class="addField btn btn-default pull-right">+</buttton>
+                                                <div class="col-sm-3">
+                                                    <button type="button" data-custom-id="5" class="addField btn btn-default pull-left"><i class="fa fa-plus"></i></buttton>
+                                                    <button type="button" data-custom-id="4" class="hideField btn btn-default pull-left"><i class="fa fa-minus"></i></button>
                                                 </div>
                                             </div>
                                             <div class="form-group hide">
@@ -105,7 +105,7 @@
                                                     <input type="text" name="custom5" id="contact-custom5" class="form-control">
                                                 </div>
                                                 <div class="col-sm-2">
-                                                    <button type="button" data-custom-id="5" class="hideField btn btn-default">-</button>
+                                                    <button type="button" data-custom-id="5" class="hideField btn btn-default pull-left"><i class="fa fa-minus"></i></button>
                                                 </div>
                                             </div>
                                             <!-- end:custom fields -->

@@ -283,8 +283,8 @@ class ContactController extends Controller
                     $data[$key] = array(
                         $value->name,
                         $value->surname,
-                        $value->email,
                         $value->phone,
+                        $value->email,
                         "<button type='button' data-toggle='modal' data-target='#myModal' id='contact-".$value->id."' data-contact-id='".$value->id."' class='contact-edit btn btn-warning'> Edit </button>",
                         "<button type='button' class='contact-delete btn btn-danger' data-contact-id='".$value->id."'><i class='fa fa-trash'></i> Delete </button>"
                     );

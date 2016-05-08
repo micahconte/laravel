@@ -4,6 +4,7 @@ $(document).ready(function(){
         "paging": false,        
         "processing": true,
         "serverSide": true,
+        "ordering": false,
         "ajax": "/datatable"
 	});
 
