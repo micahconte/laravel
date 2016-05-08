@@ -59,8 +59,9 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <a class="btn btn-primary" href="{{ url('/github') }}">GitHub</a>
-                                <a class="btn btn-primary" href="{{ url('/facebook') }}">Facebook</a>
+                                <span class="col-md-offset-1">- OR -</span><br><br>
+                                <a class="btn btn-primary" href="{{ url('/github') }}"><i class="fa fa-btn fa-sign-in"></i>GitHub</a>&nbsp;&nbsp;
+                                <a class="btn btn-primary" href="{{ url('/facebook') }}"><i class="fa fa-btn fa-sign-in"></i>Facebook</a>
                             </div>
                         </div>
                     </form>
