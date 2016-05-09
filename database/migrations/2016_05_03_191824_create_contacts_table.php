@@ -15,7 +15,7 @@ class CreateContactsTable extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->index();
-            $table->integer('subscriber_id')->unique();
+            $table->integer('subscriber_id')->unsigned()->unique();
             $table->string('name');
             $table->string('surname');
             $table->string('email')->index();
@@ -25,7 +25,7 @@ class CreateContactsTable extends Migration
             $table->string('custom3');
             $table->string('custom4');
             $table->string('custom5');
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

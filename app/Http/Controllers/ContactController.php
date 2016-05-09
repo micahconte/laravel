@@ -273,8 +273,8 @@ class ContactController extends Controller
             $vals = json_decode(json_encode($request->search));
 
             $contacts = $request->user()->contacts()->select('id','user_id','name','surname','email','phone')
-                                    ->where('name', 'like', '%'.$vals->value.'%')
-                                    ->orWhere('surname', 'like', '%'.$vals->value.'%')
+                                    ->where('surname', 'like', '%'.$vals->value.'%')
+                                    //->orWhere('name', 'like', '%'.$vals->value.'%')
                                     ->orWhere('email', 'like', '%'.$vals->value.'%')
                                     ->orWhere('phone', 'like', '%'.$vals->value.'%')
                                     ->get();
