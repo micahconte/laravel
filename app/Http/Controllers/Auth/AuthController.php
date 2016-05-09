@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use Session;
 use Socialite;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -51,11 +52,16 @@ class AuthController extends Controller
      */
     protected function validator(array $data)
     {
+        $list = $this->campaignList($data);
+        $data['list'] = $list ? $list->id : null;
+        Session::put('list', $data['list']);
+
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-        ]);
+            'list'  => 'required|integer|unique:users,list_id'
+        ], ['list.required'=>'Something is wrong with Active Campaign']);
     }
 
     /**
@@ -66,14 +72,11 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        $list = $this->campaignList($data);
-
-        if($list)
-            return User::create([
+        return User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
-                'list_id' => $list->id
+                'list_id' => Session::has('list') ? Session::get('list') : 0
             ]);
         return $list;
     }
