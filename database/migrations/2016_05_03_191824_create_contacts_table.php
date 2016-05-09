@@ -15,10 +15,10 @@ class CreateContactsTable extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->index();
-            $table->integer('subscriber_id');
+            $table->integer('subscriber_id')->unique();
             $table->string('name');
             $table->string('surname');
-            $table->string('email');
+            $table->string('email')->index();
             $table->string('phone');
             $table->string('custom1');
             $table->string('custom2');

@@ -85,6 +85,8 @@ class ContactController extends Controller
     */
     public function update(Request $request, Contact $contact)
     {
+        $this->authorize('modify', $contact);
+
         $validation = $this->validate($request, [
             'name'    => 'required|max:55|min:2',
             'surname' => 'max:255|min:2',
@@ -120,7 +122,7 @@ class ContactController extends Controller
 	*/
 	public function destroy(Request $request, Contact $contact)
 	{
-    	$this->authorize('destroy', $contact);
+    	$this->authorize('modify', $contact);
     	
 	    $contact->delete();
 
@@ -280,7 +282,7 @@ class ContactController extends Controller
             foreach($contacts as $key => $value)
             {
                 if($request->user()->id == $value->user_id)
-                    $data[$key] = array(
+                    $data[] = array(
                         $value->name,
                         $value->surname,
                         $value->phone,

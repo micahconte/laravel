@@ -1,11 +1,11 @@
 $(document).ready(function(){
 	$("#contact-datatable").DataTable({
-        "info":   false,
-        "paging": false,        
-        "processing": true,
+        "info":   	  false,
+        "paging": 	  false,        
+        "processing": false,
         "serverSide": true,
-        "ordering": false,
-        "ajax": "/datatable"
+        // "ordering":   false,
+        "ajax": 	  "/datatable"
 	});
 
 	$(".modal-body").on("click", ".hideField", function(){

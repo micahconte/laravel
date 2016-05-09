@@ -27,7 +27,7 @@ class ContactPolicy
      * @param  Contact  $contact
      * @return bool
      */
-    public function destroy(User $user, Contact $contact)
+    public function modify(User $user, Contact $contact)
     {
         return intval($user->id) === intval($contact->user_id);
     }
