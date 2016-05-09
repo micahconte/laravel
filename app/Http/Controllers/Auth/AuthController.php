@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
-use Session;
 use Socialite;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -52,16 +51,11 @@ class AuthController extends Controller
      */
     protected function validator(array $data)
     {
-        $list = $this->campaignList($data);
-        $data['list'] = !is_null($list) ? $list->id : null;
-        Session::put('list', $data['list']);
-
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-            'list'  => 'required|integer'
-        ], array('list.required'=>'Active Campaign is having issues'));
+        ]);
     }
 
     /**
@@ -72,11 +66,14 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $list = $this->campaignList($data);
+
+        if($list)
+            return User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
-                'list_id' => Session::has('list') ? Session::get('list') : 0
+                'list_id' => $list->id
             ]);
         return $list;
     }
@@ -111,11 +108,12 @@ class AuthController extends Controller
 
         $list = $this->campaignList($user);
 
-        return User::create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => bcrypt($data['password']),
-                'list_id' => !is_null($list) ? $list->id : 0
+        if($list)
+            return User::create([
+                'name' => $user['name'],
+                'email' => $user['email'],
+                'password' => bcrypt('facebook'.microtime()),
+                'list_id' => $list->id
             ]);
         return $list;
     }
@@ -149,12 +147,13 @@ class AuthController extends Controller
         if($authUser = User::where('email', $user->email)->first())
             return $authUser;
         $list = $this->campaignList($user);
-        
-        return User::create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => bcrypt($data['password']),
-                'list_id' => !is_null($list) ? $list->id : 0
+
+        if($list)
+            return User::create([
+                'name' => $user['name'],
+                'email' => $user['email'],
+                'password' => bcrypt('github'.microtime()),
+                'list_id' => $list->id
             ]);
         return $list;
     }
