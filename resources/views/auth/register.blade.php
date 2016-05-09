@@ -73,6 +73,16 @@
                                 </button>
                             </div>
                         </div>
+
+                        <div class="form-group{{ $errors->has('list') ? ' has-error' : '' }}">
+                            <div class="col-md-6 col-md-offset-4">
+                                @if ($errors->has('list'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('list') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
