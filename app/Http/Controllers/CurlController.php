@@ -33,32 +33,38 @@ class CurlController extends Controller
     public function send(Request $request)
     {
     	$this->validate($request, [
-    		'url'     => 'url',
+    		// 'url'     => 'url',
     		'name'    => 'required|max:255|min:2',
     		'email'   => 'required|email|min:2',
     		'phone'   => 'required|phone:US|max:15|min:7',
-    		'resume'  => 'required|max:700|min:2'
+    		// 'resume'  => 'required|max:700|min:2'
     	]);
 
     	$data = array(
 	    	'name'         => $request->get('name'),
 	    	'email'        => $request->get('email'),
 	    	'phoneNumber'  => $request->get('phone'),
-	    	'resume'       => $request->get('resume')
+	    	'resume'       => $request->get('resume'),
+            '_token'       => $request->get('_token')
     	);
 
-    	$url = $request->get('url');//'https://asm-resumator.azurewebsites.net/resumes';
+    	// $url = $request->get('url');//'https://asm-resumator.azurewebsites.net/resumes';
 
-    	$this->curl($url, $data);
-    	return view('curl.index');
+    	$result = $this->curl($data);
+    	return view('curl.index', ['result' => $result]);
     }
 
-    private function curl($url, $data)
+    public function receive(Request $request)
     {
-    	return Curl::to($url)
+        return true;
+    }
+
+    private function curl($data)
+    {
+    	return Curl::to('http://www.micahconte.info/curlRequest')
         ->withData($data)
         ->asJson()
-        ->get();
+        ->post();
     }
 
     private function curlo($url, $data)

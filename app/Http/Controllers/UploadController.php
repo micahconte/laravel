@@ -26,9 +26,9 @@ class UploadController extends Controller
 
     	if($request->hasFile('doc'))
     	{
-    		$fliePath = $url.$request->file('doc')->getClientOriginalName();
+    		$filePath = $url.$request->file('doc')->getClientOriginalName();
     		$request->file('doc')->move($url, $request->file('doc')->getClientOriginalName());
-    		Excel::load($fliePath, function($reader) {
+    		Excel::load($filePath, function($reader) {
 			    // Loop through all sheets
 				$reader->each(function($sheet) {
 				    // Loop through all rows

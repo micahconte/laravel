@@ -50,6 +50,7 @@ Route::group(['middleware'=>['web']], function(){
 
 	Route::get('/curl', 'CurlController@index');
 	Route::post('/curl', 'CurlController@send');
+	Route::post('/curlRequest', 'CurlController@receive');
 
 	Route::get('/cards', 'CardsController@index');
 

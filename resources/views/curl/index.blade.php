@@ -17,7 +17,7 @@
             		<!-- New Task Form -->
             		<form class="form-horizontal" role="form" method="POST" action="{{ url('/curl') }}">
             			{!! csrf_field() !!}
-
+<!--
                         <div class="form-group">
                             <div class="row">
                                 <label for="url" class="col-sm-3 control-label">Url</label>
@@ -26,6 +26,7 @@
                                 </div>
                             </div>
                         </div>
+-->
             			<!-- Task Name -->
                         <div class="form-group">
                             <div class="row">
@@ -47,9 +48,9 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label for="resume" class="col-sm-3 control-label">Resume</label>
+                                <label for="result" class="col-sm-3 control-label">Result</label>
                                 <div class="col-sm-6">
-                                    <textarea type="text" name="resume" id="resume" class="form-control" rows="20"></textarea>
+                                    <textarea type="text" name="result" id="result" class="form-control" rows="20">@if(isset($result)){{ $result }}@endif</textarea>
                                 </div>
                             </div>
                         </div>
