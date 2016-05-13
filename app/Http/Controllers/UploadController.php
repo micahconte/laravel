@@ -13,7 +13,6 @@ class UploadController extends Controller
 
 	private $counts = array();   
 	private $legends = array();
-	private $image_path = '';
 
 
 	function __construct()
@@ -71,13 +70,12 @@ class UploadController extends Controller
 			    // Adding the diagram to the graphic  
 			    $graph->Add($p1); 
 
-			    $this->image_path = 'img/charts/pie-'.microtime().'.png';
 			    // Showing graphic  
-			    $graph->Stroke($this->image_path);   
+			    $graph->Stroke('img/charts/pie.png');   
 			});
     	}
     	return view('upload.index', [
-    					'image'=> file_exists($this->image_path) ? $this->image_path : ''
+    					'image'=> file_exists('img/charts/pie.png') ? 'img/charts/pie.png?'.microtime() : ''
     				]);
     }
 }
