@@ -25,6 +25,9 @@ Route::group(['middleware'=>['web']], function(){
 	Route::get('/facebook', 'Auth\AuthController@facebook');
 	Route::get('/github', 'Auth\AuthController@github');
 
+	Route::get('/upload', 'UploadController@index');
+	Route::post('/upload', 'UploadController@index');
+
 	Route::get('/home', 'IndexController@home');
 
 	Route::get('/tasks', 'TaskController@index');
