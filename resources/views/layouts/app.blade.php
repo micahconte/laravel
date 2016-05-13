@@ -54,6 +54,7 @@
                     <li><a href="{{ url('/curl') }}">Curl</a></li>
                     <li><a href="{{ url('/cards') }}">Cards</a></li>
                     <li><a href="{{ url('/contacts') }}">Contacts</a></li>
+                    <li><a href="{{ url('/upload') }}">Upload</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
