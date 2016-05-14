@@ -67,9 +67,7 @@ class CurlController extends Controller
     private function guzzle($data)
     {
         $res = new GuzzleHttp();
-        return $res->post('http://www.micahconte.info/curlRequest', [
-            'auth' => ['user', 'pass']
-        ])->send();
+        return $res->post('http://www.micahconte.info/curlRequest')->send();
     }
 
     private function curlo($data)
