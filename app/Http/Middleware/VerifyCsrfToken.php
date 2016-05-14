@@ -12,10 +12,10 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        '/task',
-        '/contacts',
-        '/curl',
-        '/github',
-        '/facebook'
+        // '/task',
+        // '/contacts',
+        // '/curl',
+        // '/github',
+        // '/facebook',
     ];
 }

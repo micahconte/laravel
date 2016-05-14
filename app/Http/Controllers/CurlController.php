@@ -33,45 +33,40 @@ class CurlController extends Controller
     public function send(Request $request)
     {
     	$this->validate($request, [
-    		// 'url'     => 'url',
     		'name'    => 'required|max:255|min:2',
     		'email'   => 'required|email|min:2',
     		'phone'   => 'required|phone:US|max:15|min:7',
-    		// 'resume'  => 'required|max:700|min:2'
     	]);
 
-    	$data = array(
+    	$data = [
 	    	'name'         => $request->get('name'),
 	    	'email'        => $request->get('email'),
 	    	'phoneNumber'  => $request->get('phone'),
 	    	'resume'       => $request->get('resume'),
             '_token'       => $request->get('_token')
-    	);
+    	];
 
-    	// $url = $request->get('url');//'https://asm-resumator.azurewebsites.net/resumes';
-
-    	$result = $this->curl($data);
-    	return view('curl.index', ['result' => $result]);
+    	return view('curl.index', ['result' => $this->curl($data)]);
     }
 
     public function receive(Request $request)
     {
-        return true;
+        return 'true';
     }
 
     private function curl($data)
     {
     	return Curl::to('http://www.micahconte.info/curlRequest')
-        ->withData($data)
-        ->asJson()
-        ->post();
+                        ->withData($data)
+                        ->asJson()
+                        ->post();
     }
 
-    private function curlo($url, $data)
+    private function curlo($data)
     {
 		$content = json_encode($data);
 
-		$curl = curl_init($url);
+		$curl = curl_init('http://www.micahconte.info/curlRequest');
 		curl_setopt($curl, CURLOPT_HEADER, false);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_HTTPHEADER,
