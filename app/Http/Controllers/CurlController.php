@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Curl;
+use GuzzleHttp;
 
 class CurlController extends Controller
 {
 
     function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
     /**
     * Display a list of all the user's tasks
@@ -46,7 +47,7 @@ class CurlController extends Controller
             '_token'       => $request->get('_token')
     	];
 
-    	return view('curl.index', ['result' => $this->curl($data)]);
+    	return view('curl.index', ['result' => $this->guzzle($data)]);
     }
 
     public function receive(Request $request)
@@ -61,6 +62,14 @@ class CurlController extends Controller
                         ->enableDebug(storage_path().'/logs/curl.log')
                         ->asJson()
                         ->post();
+    }
+
+    private function guzzle($data)
+    {
+        $res = new GuzzleHttp();
+        return $res->post('http://www.micahconte.info/curlRequest', [
+            'auth' => ['user', 'pass']
+        ])->send();
     }
 
     private function curlo($data)

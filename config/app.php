@@ -209,7 +209,8 @@ return [
         'Curl' => Ixudra\Curl\Facades\Curl::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        'JpGraph' => JpGraph\JpGraph::class
+        'JpGraph' => JpGraph\JpGraph::class,
+        'GuzzleHttp' => Guzzle\Http\Client::class
     ],
 
 ];
