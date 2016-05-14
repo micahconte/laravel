@@ -17,17 +17,16 @@
             		<!-- New Task Form -->
             		<form class="form-horizontal" role="form" method="POST" action="{{ url('/curl') }}">
             			{!! csrf_field() !!}
-<!--
+
+            			<!-- Task Name -->
                         <div class="form-group">
                             <div class="row">
-                                <label for="url" class="col-sm-3 control-label">Url</label>
+                                <label for="url" class="col-sm-3 control-label">URL</label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="url" id="url" class="form-control">
+                                    <span id="url" class="form-control">{{ $url }}</span>
                                 </div>
                             </div>
                         </div>
--->
-            			<!-- Task Name -->
                         <div class="form-group">
                             <div class="row">
                                 <label for="name" class="col-sm-3 control-label">Name</label>

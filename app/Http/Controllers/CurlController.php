@@ -24,7 +24,7 @@ class CurlController extends Controller
     */
     public function index(Request $request)
     {
-    	return view('curl.index');
+    	return view('curl.index', ['url' => url($this->url)]);
     }
 
     /**
@@ -47,13 +47,17 @@ class CurlController extends Controller
 	    	'phoneNumber'  => $request->get('phone')
     	];
 
-    	return view('curl.index', ['result' => $this->guzzle($data)->getBody()]);
+    	return view('curl.index', ['url' => url($this->url), 'result' => $this->guzzle($data)->getBody()]);
     }
+
+
 
     public function receive(Request $request)
     {
         return $request->all();
     }
+
+
 
     private function curl($data)
     {
