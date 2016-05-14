@@ -50,14 +50,12 @@ Route::group(['middleware'=>['web']], function(){
 
 	Route::get('/cards', 'CardsController@index');
 
-	Route::auth();
-});
-
-Route::group(['middleware'=>['web']], function(){
 
 	Route::get('/curl', 'CurlController@index');
 	Route::post('/curl', 'CurlController@send');
-	
-	Route::get('/curlRequest', 'CurlController@receive');
+
 	Route::post('/curlRequest', 'CurlController@receive');
+
+	Route::auth();
+	
 });

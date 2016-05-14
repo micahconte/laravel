@@ -9,6 +9,8 @@ use GuzzleHttp;
 
 class CurlController extends Controller
 {
+    // private $url = 'http://www.micahconte.info/curlRequest';
+    private $url = '/curlRequest';
 
     function __construct()
     {
@@ -42,22 +44,20 @@ class CurlController extends Controller
     	$data = [
 	    	'name'         => $request->get('name'),
 	    	'email'        => $request->get('email'),
-	    	'phoneNumber'  => $request->get('phone'),
-	    	'resume'       => $request->get('resume'),
-            '_token'       => $request->get('_token')
+	    	'phoneNumber'  => $request->get('phone')
     	];
 
-    	return view('curl.index', ['result' => $this->guzzle($data)]);
+    	return view('curl.index', ['result' => $this->guzzle($data)->getBody()]);
     }
 
     public function receive(Request $request)
     {
-        return 'true';
+        return $request->all();
     }
 
     private function curl($data)
     {
-    	return Curl::to('http://www.micahconte.info/curlRequest')
+    	return Curl::to(url($this->url))
                         ->withData($data)
                         ->enableDebug(storage_path().'/logs/curl.log')
                         ->asJson()
@@ -67,21 +67,21 @@ class CurlController extends Controller
     private function guzzle($data)
     {
         $res = new GuzzleHttp();
-        return $res->post('http://www.micahconte.info/curlRequest')->send();
+        return $res->post(url($this->url), null, $data)->send();
     }
 
     private function curlo($data)
     {
 		$content = json_encode($data);
 
-		$curl = curl_init('http://www.micahconte.info/curlRequest');
+		$curl = curl_init(url($this->url));
 		curl_setopt($curl, CURLOPT_HEADER, false);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_HTTPHEADER,
 		        array("Content-type: application/json"));
 		curl_setopt($curl, CURLOPT_POST, true);
 		curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
-        curl_setopt($curl, CURLOPT_USERAGENT, "User-Agent: Some-Agent/1.0");
+        // curl_setopt($curl, CURLOPT_USERAGENT, "User-Agent: Some-Agent/1.0");
 
 		$json_response = curl_exec($curl);
 

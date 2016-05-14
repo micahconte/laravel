@@ -14,7 +14,8 @@ class VerifyCsrfToken extends BaseVerifier
     protected $except = [
         '/task',
         '/contacts',
-        '/curl',
+        '/curl*',
+        '/curl*',
         '/github',
         '/facebook',
     ];

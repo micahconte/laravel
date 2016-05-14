@@ -47,10 +47,12 @@
                                     <input type="text" name="phone" id="phone" class="form-control">
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-group">
                             <div class="row">
                                 <label for="result" class="col-sm-3 control-label">Result</label>
                                 <div class="col-sm-6">
-                                    <textarea type="text" name="result" id="result" class="form-control" rows="3">@if(isset($result)){{ $result }}@endif</textarea>
+                                    <textarea type="text" name="result" id="result" class="form-control" rows="10">@if(isset($result)){{ $result }}@endif</textarea>
                                 </div>
                             </div>
                         </div>
