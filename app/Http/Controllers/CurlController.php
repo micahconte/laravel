@@ -9,12 +9,12 @@ use GuzzleHttp;
 
 class CurlController extends Controller
 {
-    // private $url = 'http://www.micahconte.info/curlRequest';
-    private $url = '/curlRequest';
+    private $url = 'http://www.micahconte.info/curlRequest';
+    // private $url = '/curlRequest';
 
     function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
     /**
     * Display a list of all the user's tasks
