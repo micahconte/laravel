@@ -13,7 +13,6 @@
 
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ url('css/jquery.mobile-1.4.5.min.css') }}" rel="stylesheet" />
     <link href="{{ url('css/cards.css') }}" rel="stylesheet" />
     <link href="{{ url('css/contacts.css') }}" rel="stylesheet" />
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
