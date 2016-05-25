@@ -164,6 +164,9 @@ class AuthController extends Controller
 
     private function campaignList($user)
     {
+        if(!env('ACTIVECAMPAIGN_CALL'))
+            return false;
+
         $url = 'https://micahconte.api-us1.com';
 
         $params = array(

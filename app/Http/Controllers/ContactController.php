@@ -210,6 +210,9 @@ class ContactController extends Controller
     **/
     private function campaignContact($contact, $action, $list)
     {
+        if(!env('ACTIVECAMPAIGN_CALL'))
+            return false;
+        
         $url = 'https://micahconte.api-us1.com';
 
         $params = array(
