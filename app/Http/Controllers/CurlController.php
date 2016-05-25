@@ -9,12 +9,12 @@ use GuzzleHttp;
 
 class CurlController extends Controller
 {
-    private $url = 'http://www.micahconte.info/curlRequest';
-    // private $url = '/curlRequest';
+    private $url;
 
     function __construct()
     {
-        $this->middleware('auth');
+        $this->url = url('/curlRequest');
+        // $this->middleware('auth');
     }
     /**
     * Display a list of all the user's tasks
@@ -47,7 +47,7 @@ class CurlController extends Controller
 	    	'phoneNumber'  => $request->get('phone')
     	];
 
-    	return view('curl.index', ['url' => url($this->url), 'result' => $this->guzzle($data)->getBody()]);
+    	return view('curl.index', ['url' => $this->url, 'result' => $this->guzzle($data)->getBody()]);
     }
 
 
@@ -61,7 +61,7 @@ class CurlController extends Controller
 
     private function curl($data)
     {
-    	return Curl::to(url($this->url))
+    	return Curl::to($this->url)
                         ->withData($data)
                         ->enableDebug(storage_path().'/logs/curl.log')
                         ->asJson()
@@ -78,7 +78,7 @@ class CurlController extends Controller
     {
 		$content = json_encode($data);
 
-		$curl = curl_init(url($this->url));
+		$curl = curl_init($this->url);
 		curl_setopt($curl, CURLOPT_HEADER, false);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_HTTPHEADER,
