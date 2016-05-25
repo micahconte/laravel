@@ -11,7 +11,7 @@ class IndexController extends Controller
 
     function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
     
     public function home(Request $request)

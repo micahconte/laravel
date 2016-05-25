@@ -11,16 +11,16 @@
 |
 */
 
-
-
 Route::group(['middleware'=>['web']], function(){
 
 	Route::get('/', function(){
 		return view('welcome');
-		// return Auth::check() ? "Welcome back ". Auth::user()->username : "Hi guest <a href=".url('login').">Login with GitHub</a>";
-
 	});
 
+	Route::auth();
+});
+
+Route::group(['middleware'=>['auth']], function(){
 
 	Route::get('/facebook', 'Auth\AuthController@facebook');
 	Route::get('/github', 'Auth\AuthController@github');
@@ -44,7 +44,7 @@ Route::group(['middleware'=>['web']], function(){
 
 	Route::get('/campaign/contact/{contact}', 'ContactController@addCampaignContact');
 	Route::post('/campaign/contact/{contact}', 'ContactController@updateCampaignContact');
-	Route::get('/campaign/list/{user}', 	  'Auth\AuthController@addCampaignList');
+	Route::get('/campaign/list/{user}', 'Auth\AuthController@addCampaignList');
 
 	Route::get('/datatable', 'ContactController@datatable');
 
@@ -53,9 +53,11 @@ Route::group(['middleware'=>['web']], function(){
 
 	Route::get('/curl', 'CurlController@index');
 	Route::post('/curl', 'CurlController@send');
-
-	Route::match(['post','get'], '/curlRequest', 'CurlController@receive');
-
-	Route::auth();
 	
+});
+
+Route::group(['middleware'=>['api']], function(){
+
+	Route::match(['post','get'], '/curlRequest', 'ApiController@curl');
+
 });

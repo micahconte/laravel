@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Curl;
-use GuzzleHttp;
+use App\Api;
 
 class CurlController extends Controller
 {
@@ -14,7 +13,6 @@ class CurlController extends Controller
     function __construct()
     {
         $this->url = url('/curlRequest');
-        // $this->middleware('auth');
     }
     /**
     * Display a list of all the user's tasks
@@ -44,60 +42,10 @@ class CurlController extends Controller
     	$data = [
 	    	'name'         => $request->get('name'),
 	    	'email'        => $request->get('email'),
-	    	'phoneNumber'  => $request->get('phone')
+	    	'phoneNumber'  => $request->get('phone'),
+            '_token'       => $request->get('_token')
     	];
 
-    	return view('curl.index', ['url' => $this->url, 'result' => $this->guzzle($data)->getBody()]);
+    	return view('curl.index', ['url' => $this->url, 'result' => Api::guzzle($this->url, $data)->getBody()]);
     }
-
-
-
-    public function receive(Request $request)
-    {
-        return $request->all();
-    }
-
-
-
-    private function curl($data)
-    {
-    	return Curl::to($this->url)
-                        ->withData($data)
-                        ->enableDebug(storage_path().'/logs/curl.log')
-                        ->asJson()
-                        ->post();
-    }
-
-    private function guzzle($data)
-    {
-        $res = new GuzzleHttp();
-        return $res->post(url($this->url), null, $data)->send();
-    }
-
-    private function curlo($data)
-    {
-		$content = json_encode($data);
-
-		$curl = curl_init($this->url);
-		curl_setopt($curl, CURLOPT_HEADER, false);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($curl, CURLOPT_HTTPHEADER,
-		        array("Content-type: application/json"));
-		curl_setopt($curl, CURLOPT_POST, true);
-		curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
-        // curl_setopt($curl, CURLOPT_USERAGENT, "User-Agent: Some-Agent/1.0");
-
-		$json_response = curl_exec($curl);
-
-		$status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-
-		if ( $status != 201 ) {
-		    dd("Error: call to URL failed with status $status, response $json_response, curl_error " . curl_error($curl) . ", curl_errno " . curl_errno($curl));
-		}
-
-		curl_close($curl);
-
-		$response = json_decode($json_response, true);
-    }
-
 }
