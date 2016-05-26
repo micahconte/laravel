@@ -45,14 +45,14 @@ class AddressController extends Controller
             'city' 		=> 'required|max:255|min:2',
             'state'   	=> 'required|max:2|min:2'
     	]);
-
-        if($zip = $this->getZipCode($request))
+		$data = $this->getAddress($request);
+        if(!empty($data['zip']) && !empty($data['address']))
         {
 	    	$address = $request->user()->address()->create([
-	    		'address' => $request->address,
-	    		'city'    => $request->city,
-	    		'state'   => $request->state,
-	    		'zip'     => $zip,
+	    		'address' => $data['address'],
+	    		'city'    => $data['city'],
+	    		'state'   => $data['state'],
+	    		'zip'     => $data['zip'],
 	    	]);
 	    }
 	    else
@@ -81,13 +81,13 @@ class AddressController extends Controller
             'city' 		=> 'required|max:255|min:2',
             'state'   	=> 'required|max:2|min:2'
         ]);
-
-        if($zip = $this->getZipCode($request))
+		$data = $this->getAddress($request);
+        if(!empty($data['zip']) && !empty($data['address']))
         {
-	        $address->address   = $request->address;
-	        $address->city 		= $request->city;
-	        $address->state   	= $request->state;
-	        $address->zip   	= $zip;
+	        $address->address   = $data['address'];
+	        $address->city 		= $data['city'];
+	        $address->state   	= $data['state'];
+	        $address->zip   	= $data['zip'];
 
 	        $address->save();
 	    }
@@ -160,16 +160,42 @@ class AddressController extends Controller
         return json_encode(array('data'=>$data));
     }
 
-    private function getZipCode($request)
+    private function getAddress($request)
     {
-    	$zip = false;
+    	$data = [];
     	$url = "https://maps.googleapis.com/maps/api/geocode/json?address=".$request->address.",+".$request->city.",+".$request->state."&components=postal_code&key=".env('GOOGLE_API_KEY');
     	$res = json_decode(Api::guzzle($url, [])->getBody());
+    	
     	if(!empty($res->results))
+    	{
+    		$data = ['address'=>'','city'=>'','state'=>'','zip'=>''];
 	    	foreach($res->results[0]->address_components as $key => $value)
-	    		if($value->types[0] == 'postal_code')
-	    			$zip = $value->long_name;
-    	return $zip;
+	    	{
+	    		switch($value->types[0])
+	    		{
+	    			case 'street_number':
+	    				$data['address'] .= $value->short_name.' ';
+	    			break;
+
+	    			case 'route':
+	    				$data['address'] .= $value->short_name;
+	    			break;
+
+	    			case 'locality':
+	    				$data['city'] .= $value->short_name;
+	    			break;
+
+	    			case 'administrative_area_level_1':
+	    				$data['state'] .= $value->short_name;
+	    			break;
+
+	    			case 'postal_code':
+	    				$data['zip'] .= $value->short_name;
+	    			break;
+	    		}
+	    	}
+	    }
+    	return $data;
     }
 
     private function states()

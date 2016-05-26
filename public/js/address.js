@@ -30,14 +30,14 @@ $(document).ready(function(){
 			},
 			success:function(data,status,jqxhr){
 					$(".dataTables_empty").parent().hide();// hide empty result td
-					
+					console.log(data);
 					if($('#address-id').val() != '')
 					{
 						$('#address-'+data.id).parents('tr').html(
 							addressRow({
-									address: $('#address-address').val(),
-									city: $('#address-city').val(),
-									state: $('#address-state').val(),
+									address: data.address,
+									city: data.city,
+									state: data.state,
 									zip: data.zip,
 									token: $('#token').val(),
 
@@ -49,9 +49,9 @@ $(document).ready(function(){
 					{
 						$('#address-datatable tbody').append("<tr>"+
 							addressRow({
-								address: $('#address-address').val(),
-								city: $('#address-city').val(),
-								state: $('#address-state').val(),
+								address: data.address,
+								city: data.city,
+								state: data.state,
 								zip: data.zip,
 								token: $('#token').val(),
 								
