@@ -30,7 +30,7 @@ $(document).ready(function(){
 			},
 			success:function(data,status,jqxhr){
 					$(".dataTables_empty").parent().hide();// hide empty result td
-					console.log(data);
+					
 					if($('#address-id').val() != '')
 					{
 						$('#address-'+data.id).parents('tr').html(
