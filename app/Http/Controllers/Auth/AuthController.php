@@ -53,15 +53,16 @@ class AuthController extends Controller
      */
     protected function validator(array $data)
     {
-        $list = $this->campaignList($data);
-        $data['list'] = $list ? $list->id : null;
-        Session::put('list', $data['list']);
-
+        if($list = $this->campaignList($data))
+        {
+            $data['list'] = $list ? $list->id : null;
+            Session::put('list', $data['list']);
+        }
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-            'list'  => 'required|integer|unique:users,list_id'
+            'list'  => 'integer|unique:users,list_id'
         ], ['list.required'=>'Something is wrong with Active Campaign']);
     }
 
