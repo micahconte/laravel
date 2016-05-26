@@ -20,7 +20,7 @@ class Api
     public static function guzzle($url, $data)
     {
         $res = new GuzzleHttp();
-        return $res->post($url, null, $data)->send();
+        return $res->get($url, null, $data)->send();
     }
 
     public static function curlo($url, $data)

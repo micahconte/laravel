@@ -41,12 +41,18 @@ Route::group(['middleware'=>['auth']], function(){
 	Route::post('/contacts/{contact}', 'ContactController@update');
 	Route::delete('/contacts/{contact}', 'ContactController@destroy');
 
+	Route::get('/address', 'AddressController@index');
+	Route::post('/address', 'AddressController@store');
+	Route::get('/address/{address}', 'AddressController@address');
+	Route::post('/address/{address}', 'AddressController@update');
+	Route::delete('/address/{address}', 'AddressController@destroy');
 
 	Route::get('/campaign/contact/{contact}', 'ContactController@addCampaignContact');
 	Route::post('/campaign/contact/{contact}', 'ContactController@updateCampaignContact');
 	Route::get('/campaign/list/{user}', 'Auth\AuthController@addCampaignList');
 
 	Route::get('/datatable', 'ContactController@datatable');
+	Route::get('/addresstable', 'AddressController@datatable');
 
 	Route::get('/cards', 'CardsController@index');
 

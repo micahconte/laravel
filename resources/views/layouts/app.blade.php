@@ -15,6 +15,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ url('css/cards.css') }}" rel="stylesheet" />
     <link href="{{ url('css/contacts.css') }}" rel="stylesheet" />
+    <link href="{{ url('css/address.css') }}" rel="stylesheet" />
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
     <style>
@@ -55,6 +56,7 @@
                     <li><a href="{{ url('/cards') }}">Cards</a></li>
                     <li><a href="{{ url('/contacts') }}">Contacts</a></li>
                     <li><a href="{{ url('/upload') }}">Upload</a></li>
+                    <li><a href="{{ url('/address') }}">Address</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -90,5 +92,6 @@
     <script type="text/javascript" src="{{ url('/js/datatables.js') }}"></script>
     <script type="text/javascript" src="{{ url('/js/cards.js') }}"></script>
     <script type="text/javascript" src="{{ url('/js/contacts.js') }}"></script>
+    <script type="text/javascript" src="{{ url('/js/address.js') }}"></script>
 </body>
 </html>
