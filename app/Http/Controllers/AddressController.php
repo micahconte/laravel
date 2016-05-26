@@ -46,7 +46,7 @@ class AddressController extends Controller
             'state'   	=> 'required|max:2|min:2'
     	]);
 		$data = $this->getAddress($request);
-        if(!empty($data['zip']) && !empty($data['address']))
+        if(!empty($data['zip']) && !empty($data['address']) && !empty($data['city']))
         {
 	    	$address = $request->user()->address()->create([
 	    		'address' => $data['address'],
@@ -82,7 +82,7 @@ class AddressController extends Controller
             'state'   	=> 'required|max:2|min:2'
         ]);
 		$data = $this->getAddress($request);
-        if(!empty($data['zip']) && !empty($data['address']))
+        if(!empty($data['zip']) && !empty($data['address']) && !empty($data['city']))
         {
 	        $address->address   = $data['address'];
 	        $address->city 		= $data['city'];
