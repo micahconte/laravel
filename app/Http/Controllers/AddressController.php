@@ -56,11 +56,7 @@ class AddressController extends Controller
 	    	]);
 	    }
 	    else
-	    {
-	    	header("HTTP/1.1 500 Internal Server Error");
-	    	echo 'Address unknown';
-	    	die();
-	    }
+	    	return response('Address not found', 200);
         return json_encode($address);
     }
 
@@ -92,11 +88,7 @@ class AddressController extends Controller
 	        $address->save();
 	    }
 	    else
-	    {
-	    	header("HTTP/1.1 500 Internal Server Error");
-	    	echo 'Address unknown';
-	    	die();
-	    }
+	    	return response('Address not found', 200);
         return json_encode($address);
     }
 
@@ -162,7 +154,7 @@ class AddressController extends Controller
 
     private function getAddress($request)
     {
-    	$data = [];
+    	$data = ['address'=>'','city'=>'','state'=>'','zip'=>''];
     	$url = "https://maps.googleapis.com/maps/api/geocode/json?address=".$request->address.",+".$request->city.",+".$request->state."&components=postal_code&key=".env('GOOGLE_API_KEY');
     	$res = json_decode(Api::guzzle($url, [])->getBody());
     	
