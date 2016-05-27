@@ -30,36 +30,23 @@ $(document).ready(function(){
 			},
 			success:function(data,status,jqxhr){
 					$(".dataTables_empty").parent().hide();// hide empty result td
-					
+					var addressData = {
+										address: data.address,
+										city: data.city,
+										state: data.state,
+										zip: data.zip,
+										token: $('#token').val(),
+										id: data.id
+									};
 					if($('#address-id').val() != '')
 					{
-						$('#address-'+data.id).parents('tr').html(
-							addressRow({
-									address: data.address,
-									city: data.city,
-									state: data.state,
-									zip: data.zip,
-									token: $('#token').val(),
-
-									id: data.id
-							})
-						);//replace existing row if updating
+						$('#address-'+data.id).parents('tr').html(addressRow(addressData));//replace existing row if updating
 					}
 					else
 					{
-						$('#address-datatable tbody').append("<tr>"+
-							addressRow({
-								address: data.address,
-								city: data.city,
-								state: data.state,
-								zip: data.zip,
-								token: $('#token').val(),
-								
-								id: data.id
-
-							})+"</tr>"
-						);//add new row if creating
+						$('#address-datatable tbody').append("<tr>"+addressRow(addressData)+"</tr>");//add new row if creating
 					}
+					
 					clearModal();
 					$('.close').click();
 			},
