@@ -64,8 +64,7 @@ $(document).ready(function(){
 					$('.close').click();
 			},
 			error:function(data,status,jqxhr){
-				var message = '';
-				if(data.status != 200 && data.status != 403 && data.status != 500)
+				if(data.status == 422)
 				{
 					var errors = $.parseJSON(data.responseText);
 					for(error in errors){
@@ -97,8 +96,7 @@ $(document).ready(function(){
 
 			},
 			error:function(data,status,jqxhr){
-				var message = '';
-				if(data.status != 200)
+				if(data.status == 422)
 				{
 					var errors = $.parseJSON(data.responseText);
 					for(error in errors){
