@@ -59,11 +59,14 @@ class AuthController extends Controller
             Session::put('list', $data['list']);
         }
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-            'list'  => 'integer|unique:users,list_id'
-        ], ['list.required'=>'Something is wrong with Active Campaign']);
+                'name' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required|min:6|confirmed',
+                'list'  => 'integer|unique:users,list_id'
+            ], 
+            [
+                'list.required'=>'Something is wrong with Active Campaign'
+            ]);
     }
 
     /**

@@ -168,29 +168,28 @@ class AddressController extends Controller
     	
     	if(!empty($res->results))
     	{
-    		$data = ['address'=>'','city'=>'','state'=>'','zip'=>''];
 	    	foreach($res->results[0]->address_components as $key => $value)
 	    	{
 	    		switch($value->types[0])
 	    		{
 	    			case 'street_number':
-	    				$data['address'] .= $value->short_name.' ';
+	    				$data['address'] = $value->short_name;
 	    			break;
 
 	    			case 'route':
-	    				$data['address'] .= $value->short_name;
+	    				$data['address'] .= ' '.$value->short_name;
 	    			break;
 
 	    			case 'locality':
-	    				$data['city'] .= $value->short_name;
+	    				$data['city'] = $value->short_name;
 	    			break;
 
 	    			case 'administrative_area_level_1':
-	    				$data['state'] .= $value->short_name;
+	    				$data['state'] = $value->short_name;
 	    			break;
 
 	    			case 'postal_code':
-	    				$data['zip'] .= $value->short_name;
+	    				$data['zip'] = $value->short_name;
 	    			break;
 	    		}
 	    	}
