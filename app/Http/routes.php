@@ -25,8 +25,6 @@ Route::group(['middleware'=>['auth']], function(){
 	Route::get('/facebook', 'Auth\AuthController@facebook');
 	Route::get('/github', 'Auth\AuthController@github');
 
-	Route::get('/upload', 'UploadController@index');
-	Route::post('/upload', 'UploadController@index');
 
 	Route::get('/home', 'IndexController@home');
 
@@ -60,6 +58,15 @@ Route::group(['middleware'=>['auth']], function(){
 	Route::get('/curl', 'CurlController@index');
 	Route::post('/curl', 'CurlController@send');
 	
+});
+
+Route::group(['middleware'=>['auth','role:admin']], function(){
+	Route::get('/upload', 'UploadController@index');
+	Route::post('/upload', 'UploadController@index');
+
+	Route::get('/roles', 'RoleController@index');
+	Route::post('/roles', 'RoleController@add');
+	Route::delete('/roles/{role}', 'RoleController@remove');
 });
 
 Route::group(['middleware'=>['api']], function(){

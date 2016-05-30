@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class AdminAuthenticate
+class RoleMiddleware
 {
     /**
      * Handle an incoming request.
@@ -13,8 +13,10 @@ class AdminAuthenticate
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $role)
     {
+        if(!$request->user()->role()->where('name', '=', $role)->first())
+            return redirect('/')->withErrors(['You are unauthorized']);
         return $next($request);
     }
 }

@@ -57,6 +57,7 @@
                     <li><a href="{{ url('/contacts') }}">Contacts</a></li>
                     <li><a href="{{ url('/upload') }}">Upload</a></li>
                     <li><a href="{{ url('/address') }}">Address</a></li>
+                    <li><a href="{{ url('/roles') }}">Roles</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -93,5 +94,6 @@
     <script type="text/javascript" src="{{ url('/js/cards.js') }}"></script>
     <script type="text/javascript" src="{{ url('/js/contacts.js') }}"></script>
     <script type="text/javascript" src="{{ url('/js/address.js') }}"></script>
+    <script type="text/javascript" src="{{ url('/js/roles.js') }}"></script>
 </body>
 </html>

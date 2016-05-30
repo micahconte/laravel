@@ -27,7 +27,7 @@ class ContactController extends Controller
     function index(Request $request)
     {
     	return view('contacts.index', [
-    		'contacts' => array()
+    		'contacts' => []
     	]);
     }
 
