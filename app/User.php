@@ -40,8 +40,8 @@ class User extends Authenticatable
         return $this->hasMany(Address::class);
     }
 
-    public function role()
+    public function userRole()
     {
-        return $this->hasMany(Role::class);
+        return $this->hasMany(UserRole::class);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Repositories\RoleRepository;
 
 class RoleMiddleware
 {
@@ -15,7 +16,7 @@ class RoleMiddleware
      */
     public function handle($request, Closure $next, $role)
     {
-        if(!$request->user()->role()->where('name', '=', $role)->first())
+        if(!$request->user()->userRole()->join('roles', 'user_roles.role_id', '=', 'roles.id')->where('roles.name',$role)->first())
             return redirect('/')->withErrors(['You are unauthorized']);
         return $next($request);
     }

@@ -8,8 +8,8 @@ class Role extends Model
 {
     protected $fillable = ['name'];
 
-    public function user()
+    public function userRole()
     {
-    	return $this->belongsTo(User::class);
+    	return $this->belongsTo(UserRole::class);
     }
 }

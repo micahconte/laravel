@@ -25,7 +25,8 @@ class RoleController extends Controller
 											'roles.id as role_id',
 											'roles.name as role_name'
 											)
-										->leftJoin('roles', 'users.id', '=', 'roles.user_id')
+										->leftJoin('user_roles', 'users.id', '=', 'user_roles.user_id')
+										->leftJoin('roles', 'user_roles.role_id', '=', 'roles.id')
 										->get()
 						]
 					);
