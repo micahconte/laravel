@@ -42,7 +42,7 @@ class CurlController extends Controller
     	$data = [
 	    	'name'         => $request->get('name'),
 	    	'email'        => $request->get('email'),
-	    	'phoneNumber'  => $request->get('phone'),
+	    	'phone'        => $request->get('phone'),
             '_token'       => $request->get('_token')
     	];
 
