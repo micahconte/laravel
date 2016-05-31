@@ -16,7 +16,6 @@
     <link href="{{ url('css/cards.css') }}" rel="stylesheet" />
     <link href="{{ url('css/contacts.css') }}" rel="stylesheet" />
     <link href="{{ url('css/address.css') }}" rel="stylesheet" />
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
     <style>
         body {
