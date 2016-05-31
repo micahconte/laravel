@@ -80,18 +80,12 @@
             </div>
         </div>
     </nav>
-
-    @yield('content')
-
-    <!-- JavaScripts -->
     <script type="text/javascript" src="{{ url('js/jquery-2.1.4.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/bootstrap-3.3.6.js') }}"></script>
     <script type="text/javascript" src="{{ url('/js/fastclick.js') }}"></script>
-    <script type="text/javascript" src="{{ url('/js/resume.js') }}"></script>
     <script type="text/javascript" src="{{ url('/js/datatables.js') }}"></script>
-    <script type="text/javascript" src="{{ url('/js/cards.js') }}"></script>
-    <script type="text/javascript" src="{{ url('/js/contacts.js') }}"></script>
-    <script type="text/javascript" src="{{ url('/js/address.js') }}"></script>
-    <script type="text/javascript" src="{{ url('/js/roles.js') }}"></script>
+
+    @yield('content')
+
 </body>
 </html>

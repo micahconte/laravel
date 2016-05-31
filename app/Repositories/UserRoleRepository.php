@@ -2,9 +2,9 @@
 namespace App\Repositories;
 
 use App\User;
-use App\Role;
+use App\UserRole;
 
-class RoleRepository
+class UserRoleRepository
 {
 	/**
 	* Get all of the roles for a given user
@@ -15,14 +15,14 @@ class RoleRepository
 	{
 		if(empty($filter))
 		{
-			return Role::where('users.user_id', $user->id)
+			return UserRole::where('users.user_id', $user->id)
 						->join('user_roles','user_roles.role_id','=','roles.id')
 						->join('users','users.id','=','user_roles.user_id')
 						->get();
 		}
 		else
 		{
-			return Role::where('users.user_id', $user->id)
+			return UserRole::where('users.user_id', $user->id)
 						->where('roles.name','=',$filter)
 						->join('user_roles','user_roles.role_id','=','roles.id')
 						->join('users','users.id','=','user_roles.user_id')

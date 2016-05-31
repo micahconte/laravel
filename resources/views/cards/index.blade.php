@@ -35,4 +35,5 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="{{ url('/js/cards.js') }}"></script>
 @endsection

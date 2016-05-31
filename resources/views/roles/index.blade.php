@@ -25,13 +25,13 @@
 									@foreach($users as $user)
 									<tr>
 										<td><label for="role-checkbox-{{ $user->role_id }}" class="control-label">{{ $user->user_name }}</label></td>
-										<td><input type="checkbox" id="role-checkbox-{{ $user->user_id }}" data-user-id="{{ $user->user_id }}" data-role-id="{{ $user->role_id }}" data-role-name="admin" class="user_role_admin" {{ $user->role_name == 'admin' ? 'checked' : '' }} /></td>
+										<td><input type="checkbox" id="role-checkbox-{{ $user->user_id }}" data-user-id="{{ $user->user_id }}" data-role-id="{{ $role->id }}" data-user-role-id="{{ $user->user_role_id }}" class="user_role_admin" {{ $user->user_role_id ? 'checked' : '' }} /></td>
 									</tr>
 									@endforeach
 								@endif
 							</tbody>
 						</table>
-						<input type="hidden" id="token" value="{{ csrf_token() }}"
+						<input type="hidden" id="token" value="{{ csrf_token() }}" />
 					</div>
 				</div>
 			</div>
@@ -39,4 +39,5 @@
 	</div>
 </div>
 
+<script type="text/javascript" src="{{ url('/js/roles.js') }}"></script>
 @endsection

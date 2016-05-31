@@ -4,8 +4,8 @@ $(document).ready(function(){
 
 		var $this = $(this);
 		user_id = $this.data('userId');
-		role = $this.data('roleName');
-		id = $this.data('roleId');
+		user_role_id = $this.data('userRoleId');
+		role_id = $this.data('roleId');
 		token = $('#token').val();
 
 		if($(this).is(":checked"))
@@ -15,14 +15,13 @@ $(document).ready(function(){
 				method: 'post',
 				dataType: 'json',
 				data:{
-					user: user_id,
-					role: role,
-					id: id,
+					user_id: user_id,
+					role_id: role_id,
 					_token: token
 				},
 				success: function(data, status)
 				{
-					// console.log(data)
+					$this.data('userRoleId', data.id);
 				},
 				error: function(data, status, jqxhr)
 				{
@@ -33,13 +32,10 @@ $(document).ready(function(){
 		else
 		{
 			$.ajax({
-				url: '/roles/'+id,
+				url: '/roles/'+ user_role_id,
 				method: 'delete',
 				dataType: 'json',
 				data: {
-					user_id: user_id,
-					role: role,
-					id: id,
 					_token: token
 				},
 				success: function(data, status)

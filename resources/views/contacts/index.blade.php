@@ -168,5 +168,5 @@
         </div>
     </div>
 </div>
-
+<script type="text/javascript" src="{{ url('/js/contacts.js') }}"></script>
 @endsection

@@ -17,6 +17,8 @@ Route::group(['middleware'=>['web']], function(){
 		return view('welcome');
 	});
 
+	Route::get('/home', 'IndexController@home');
+
 	Route::auth();
 });
 
@@ -25,8 +27,6 @@ Route::group(['middleware'=>['auth']], function(){
 	Route::get('/facebook', 'Auth\AuthController@facebook');
 	Route::get('/github', 'Auth\AuthController@github');
 
-
-	Route::get('/home', 'IndexController@home');
 
 	Route::get('/tasks', 'TaskController@index');
 	Route::post('/task', 'TaskController@store');
@@ -61,8 +61,8 @@ Route::group(['middleware'=>['auth','role:admin']], function(){
 
 	Route::get('/roles', 'RoleController@index');
 	Route::post('/roles', 'RoleController@add');
-	Route::delete('/roles/{role}', 'RoleController@remove');
-	
+	Route::delete('/roles/{user_role}', 'RoleController@remove');
+
 	Route::get('/address', 'AddressController@index');
 	Route::post('/address', 'AddressController@store');
 	Route::get('/address/{address}', 'AddressController@address');

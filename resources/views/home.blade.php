@@ -217,4 +217,5 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="{{ url('/js/resume.js') }}"></script>
 @endsection

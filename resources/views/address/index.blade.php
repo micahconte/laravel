@@ -112,5 +112,5 @@
         </div>
     </div>
 </div>
-
+<script type="text/javascript" src="{{ url('/js/address.js') }}"></script>
 @endsection
