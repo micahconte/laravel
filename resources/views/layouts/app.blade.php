@@ -84,7 +84,7 @@
     @yield('content')
 
     <!-- JavaScripts -->
-    <script type="text/javascript" src="{{ url('js/jquery-3.3.6.js') }}"></script>
+    <script type="text/javascript" src="{{ url('js/jquery-2.1.4.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/bootstrap-3.3.6.js') }}"></script>
     <script type="text/javascript" src="{{ url('/js/fastclick.js') }}"></script>
     <script type="text/javascript" src="{{ url('/js/resume.js') }}"></script>
