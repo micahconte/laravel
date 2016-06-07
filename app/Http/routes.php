@@ -16,6 +16,8 @@ Route::group(['middleware'=>['web']], function(){
 	Route::get('/', function(){
 		return view('welcome');
 	});
+	Route::get('/facebook', 'Auth\AuthController@facebook');
+	Route::get('/github', 'Auth\AuthController@github');
 
 	Route::get('/home', 'IndexController@home');
 
@@ -23,9 +25,6 @@ Route::group(['middleware'=>['web']], function(){
 });
 
 Route::group(['middleware'=>['auth']], function(){
-
-	Route::get('/facebook', 'Auth\AuthController@facebook');
-	Route::get('/github', 'Auth\AuthController@github');
 
 
 	Route::get('/tasks', 'TaskController@index');
