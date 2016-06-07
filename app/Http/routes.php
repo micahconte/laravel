@@ -52,21 +52,22 @@ Route::group(['middleware'=>['auth']], function(){
 	Route::get('/curl', 'CurlController@index');
 	Route::post('/curl', 'CurlController@send');
 	
-});
-
-Route::group(['middleware'=>['auth','role:admin']], function(){
 	Route::get('/upload', 'UploadController@index');
 	Route::post('/upload', 'UploadController@index');
-
-	Route::get('/roles', 'RoleController@index');
-	Route::post('/roles', 'RoleController@add');
-	Route::delete('/roles/{user_role}', 'RoleController@remove');
 
 	Route::get('/address', 'AddressController@index');
 	Route::post('/address', 'AddressController@store');
 	Route::get('/address/{address}', 'AddressController@address');
 	Route::post('/address/{address}', 'AddressController@update');
 	Route::delete('/address/{address}', 'AddressController@destroy');
+	
+});
+
+Route::group(['middleware'=>['auth','role:admin']], function(){
+
+	Route::get('/roles', 'RoleController@index');
+	Route::post('/roles', 'RoleController@add');
+	Route::delete('/roles/{user_role}', 'RoleController@remove');
 });
 
 Route::group(['middleware'=>['api']], function(){
