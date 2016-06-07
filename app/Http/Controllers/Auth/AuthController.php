@@ -120,7 +120,7 @@ class AuthController extends Controller
                 'name' => $user['name'],
                 'email' => $user['email'],
                 'password' => bcrypt('facebook'.microtime()),
-                'list_id' => $list->id
+                'list_id' => $list ? $list->id : 0
             ]);
     }
 
