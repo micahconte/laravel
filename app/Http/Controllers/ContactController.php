@@ -162,9 +162,11 @@ class ContactController extends Controller
     **/
     public function addCampaignContact(Request $request, Contact $contact)
     {
-        $subscriber = $this->campaignContact($contact, 'contact_add', $request->user()->list_id);
-        $contact->subscriber_id = $subscriber->subscriber_id;// add subscriber id to contact
-        $contact->save();
+        if($subscriber = $this->campaignContact($contact, 'contact_add', $request->user()->list_id))
+        {
+            $contact->subscriber_id = $subscriber->subscriber_id;// add subscriber id to contact
+            $contact->save();
+        }
         return json_encode($contact);
     }
 
@@ -198,7 +200,7 @@ class ContactController extends Controller
     **/
     public function deleteCampaignContact(Request $request, Contact $contact)
     {
-        $subscriber = $this->campaignContact($contact, 'contact_delete', $request->user()->list_id);
+        $this->campaignContact($contact, 'contact_delete', $request->user()->list_id);
         return json_encode($contact);
     }
 

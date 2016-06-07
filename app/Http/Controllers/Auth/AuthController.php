@@ -116,14 +116,12 @@ class AuthController extends Controller
 
         $list = $this->campaignList($user);
 
-        if($list)
-            return User::create([
+        return User::create([
                 'name' => $user['name'],
                 'email' => $user['email'],
                 'password' => bcrypt('facebook'.microtime()),
                 'list_id' => $list->id
             ]);
-        return $list;
     }
 
     /**
