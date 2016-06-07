@@ -7,6 +7,7 @@ use App\Api;
 use Validator;
 use Session;
 use Socialite;
+use Closure;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -90,13 +91,13 @@ class AuthController extends Controller
     * Facebook Route
     *
     **/
-    public function facebook(Request $request)
+    public function facebook(Request $request, Closure $next)
     {
         if($request->has('code'))
         {
             $user = $this->facebookCallback();
             $loggedIn = \Auth::loginUsingId($user->id, true);
-            return \Redirect::to('/home');
+            return $next($request);
         }
         else
             return Socialite::driver('facebook')->redirect();

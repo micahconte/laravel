@@ -24,6 +24,12 @@
 			            		<form method="post" enctype="multipart/form-data">
 			            			<input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
                                     <div class="form-div">
+										<div class="form-group">
+											<div class="col-sm-3">
+												Excel Sample
+												<img src="{{ url('img/sample-xls.png') }}" />
+											</div>
+										</div>
 										<div class='form_group'>
 											<div class="col-sm-6">
 												<input type="file" id="excel" name="doc" class="form-control" required="true" />

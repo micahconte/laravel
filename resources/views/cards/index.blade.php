@@ -1,4 +1,4 @@
-<!-- resources/views/curl/index.blade.php -->
+<!-- resources/views/cards/index.blade.php -->
 
 @extends('layouts.app')
 
