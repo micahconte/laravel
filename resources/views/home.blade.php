@@ -9,7 +9,7 @@
 
                                     <div data-role="page" class="page" id="next">
                                         <div data-role="header" data-position="fixed">
-                                            <h2>Cover Letter</h2>
+                                            <hr><h2 style="text-align:center;font-family:roboto">Cover Letter</h2><hr>
                                             <!-- <a href="#end" data-transition="slide" class="ui-btn ui-btn-right ui-btn-inline ui-btn-corner-all">Resume</a> -->
                                         </div>
 
@@ -22,10 +22,13 @@
                                             <p>Please review the enclosed resume and consider my application for your developer position. I would love to discuss this opportunity and see if I am a good match.  Feel free to contact me by the number below with any questions.</p> 
                                             <br>
 
-                                            <p>Thank You,<br>  
-                                            Micah Conte<br>
-                                            239.207.8036<br>
-                                            micahconte@hotmail.com</p>
+                                            <p>
+                                                Thank You,<br>  
+                                                Micah Conte<br>
+                                                239.207.8036<br>
+                                                micahconte@hotmail.com<br>
+                                                <br>
+                                            </p>
                                         </div>
                                     </div>
 
@@ -33,18 +36,21 @@
                                     <div data-role="page" class="page" id="end">
                                         <div data-role="header" data-position="fixed">
                                             <!-- <a href="#next" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-left ui-btn-inline ui-btn-corner-all">Cover Letter</a> -->
-                                            <h2>Resume</h2>
+                                            <hr><h2 style="text-align:center;font-family:roboto">Resume</h2><hr>
                                         </div>
 
                                         <div class="ui-content" role="main">
                                             <p>
-                                                Micah Conte <br>239-207-8036  <br>micahconte@hotmail.com<br><br>
+                                                Micah Conte<br>
+                                                239.207.8036<br>
+                                                micahconte@hotmail.com<br>
+                                                <br>
                                             </p>
 
                                             <h3>Professional Experience</h3>
 
                                             <p>
-                                            Dec ‘15 – April '16  VanDePoel Prod. – Orange County, CA (PHP Developer) – Contract Remote<br>
+                                            Dec ‘15 – May '16  VanDePoel Prod. – Orange County, CA (PHP Developer) – Contract Remote<br>
                                             Developed company websites and applications in PHP in Laravel framework<br>
                                             </p>
 
@@ -64,6 +70,7 @@
                                             <li>Skype, Join-Me and TeamViewer for remote team interactions</li>
                                             </ul>
                                             </p>
+                                            <br>
 
                                             <p>
                                             Aug ’15 – Dec ‘15  Asset-Map – Philadelphia, PA (Python Developer) - Contract<br>
@@ -82,6 +89,8 @@
                                             <li>Managed Development and Production code-base for smooth code fix and update deployment</li>
                                             </ul>
                                             </p>
+                                            <br>
+
                                             <p>
                                                 November ’14 – June ‘15  International Rectifier – Temecula, CA (Software Developer) - Contract<br>
                                             Developed company website applications in PHP scripting and object-orientated coding structure<br>
@@ -99,6 +108,8 @@
                                             <li>Managed Development and Production code-base for smooth code fix and update deployment</li>
                                             </ul>
                                             </p>
+                                            <br>
+                                            
 
                                             <p>
                                                 August '13 to August ‘14  iSpot.com – Concord, CA (PHP Developer) - Contract<br>
@@ -114,6 +125,8 @@
                                             <li>Preformed unit testing, debugging for quality assurance</li>
                                             </ul>
                                             </p>
+                                            <br>
+                                            
 
                                             <p>
                                                 Nov '11 to July '13  Auction.com – Irvine, CA (Senior PHP Developer) - Contract<br>
@@ -131,6 +144,8 @@
                                             <li>Unit testing, debugging and Quality Assurance for software development for high-volume traffic</li>
                                             </ul>
                                             </p>
+                                            <br>
+                                            
                                              
                                             <p>
                                                 Feb '11 to Nov '11  Independent Web Contractor<br>
@@ -146,6 +161,8 @@
                                             <li>Amazon Web Services for image and video storage</li>
                                             </ul>
                                             </p>
+                                            <br>
+                                            
                                              
                                             <p>
                                                 Oct ’10 to Feb ’11 Harvard Law School - Cambridge, MA (PHP Developer) - Contract<br>
@@ -157,6 +174,8 @@
                                             <li>Consulted with faculty and students for UI specifications</li>
                                             </ul>
                                             </p>
+                                            <br>
+                                            
 
                                             <p>
                                                 Nov ’09 to Jul ’10  Banyan Technology Group - Naples, FL (Web Developer) – Full-Time<br>
@@ -172,6 +191,8 @@
                                             <li>Application and website testing, debugging and Quality Assurance</li>
                                             </ul>
                                             </p>
+                                            <br>
+                                            
 
                                             <p>
                                                 Jun ’09 to Nov ’09     Cron Systems - Punta Gorda, FL. (Software Developer) - Contract<br>
@@ -185,6 +206,8 @@
                                             <li>Data storage and data encryption</li>
                                             </ul>
                                             </p>
+                                            <br>
+                                            
 
                                             <p>
                                                 May ’07 to May ’09      Administrative Claim Service - Winchester, MA  (Developer) – Full-Time<br>
@@ -201,6 +224,7 @@
                                             <li>Asterisk telecom setup</li>
                                             </ul>
                                             </p>
+                                            <br>
 
                                               
                                             <p>
