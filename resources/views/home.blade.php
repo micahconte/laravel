@@ -14,12 +14,25 @@
                                         </div>
 
                                         <div class="ui-content" role="main">
-                                            <p>HR Manager,</p>
+                                            <p>To whom it may concern,</p>
                                             <br>
 
-                                            <p>My goal is to work with a company where I can keep learning and developing my programming skills as well as keep up with new and exciting technologies. I have a broad range of experience with PHP, MySQL, HTML, CSS and JS as well as with other tools like jQuery, Ajax, Tortoise SVN and some C++, Python, and Java. I have programmed in Laravel and ZEND frameworks as well as dabbled a little with Drupal and Cordova.</p>
-                                            <p>I feel I can be a good team-player as well as a leader. I am an easy-going person, yet very meticulous about my work. I like to take ownership of and follow through the complete life-cycle of projects.</p> 
-                                            <p>Please review the enclosed resume and consider my application for your developer position. I would love to discuss this opportunity and see if I am a good match.  Feel free to contact me by the number below with any questions.</p> 
+                                            <p>
+                                                My goal is to work with a company where I can keep learning and developing my 
+                                                programming skills as well as keep up with new and exciting technologies. 
+                                                I have a broad range of experience with PHP, MySQL, HTML, CSS and Javascript as well as 
+                                                with other tools like Python and Java. I have programmed in Laravel, ZEND, 
+                                                and Django frameworks as well some javascript frameworks like React and Angular.
+                                            </p>
+                                            <p>
+                                                I feel I can be a good team-player as well as a leader. I am an easy-going 
+                                                person, yet very meticulous about my work. I like to take ownership of and 
+                                                follow through the complete life-cycle of projects.
+                                            </p> 
+                                            <p>
+                                                Please review my resume and feel free to contact me by the number below with any 
+                                                questions.
+                                            </p> 
                                             <br>
 
                                             <p>
@@ -40,14 +53,7 @@
                                         </div>
 
                                         <div class="ui-content" role="main">
-                                            <p>
-                                                Micah Conte<br>
-                                                239.207.8036<br>
-                                                micahconte@hotmail.com<br>
-                                                <br>
-                                            </p>
-
-                                            <h3>Professional Experience</h3>
+                                            <br>
 
                                             <p>
                                             Dec ‘15 – May '16  VanDePoel Prod. – Orange County, CA (PHP Developer) – Contract Remote<br>
@@ -228,8 +234,9 @@
 
                                               
                                             <p>
+                                                Education 
                                             <ul>
-                                            <li>Education  Associates Degree in Computer Science - Programming
+                                            <li>Associates Degree in Computer Science - Programming
                                             Northern Essex - Dec 2008</li>
                                             </ul>
                                             </p>
