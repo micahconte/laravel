@@ -51,7 +51,7 @@ Route::group(['middleware'=>['auth']], function(){
 
 	Route::get('/curl', 'CurlController@index');
 	Route::post('/curl', 'CurlController@send');
-	
+
 	Route::get('/upload', 'UploadController@index');
 	Route::post('/upload', 'UploadController@index');
 
@@ -73,5 +73,7 @@ Route::group(['middleware'=>['auth','role:admin']], function(){
 Route::group(['middleware'=>['api']], function(){
 
 	Route::match(['post','get'], '/curlRequest', 'ApiController@curl');
+	Route::match(['post','get'], '/resume', 'IndexController@resume');
+	Route::match(['post','get'], '/cover_letter', 'IndexController@coverLetter');
 
 });

@@ -9,8 +9,15 @@
 
                                     <div data-role="page" class="page" id="next">
                                         <div data-role="header" data-position="fixed">
-                                            <hr><h2 style="text-align:center;font-family:roboto">Cover Letter</h2><hr>
-                                            <!-- <a href="#end" data-transition="slide" class="ui-btn ui-btn-right ui-btn-inline ui-btn-corner-all">Resume</a> -->
+                                            <hr>
+                                                <div class="col-md-3 col-md-offset-4">
+                                                    <h2 style="font-family:roboto;display:inline">Cover Letter</h2>
+                                                </div>
+                                                <div class="col-md-1 col-md-offset-3">
+                                                    <a href="{{ url('/cover_letter') }}" class="btn btn-info active">Download</a>
+                                                </div>
+                                                <br>
+                                            <hr>
                                         </div>
 
                                         <div class="ui-content" role="main">
@@ -48,8 +55,15 @@
 
                                     <div data-role="page" class="page" id="end">
                                         <div data-role="header" data-position="fixed">
-                                            <!-- <a href="#next" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-left ui-btn-inline ui-btn-corner-all">Cover Letter</a> -->
-                                            <hr><h2 style="text-align:center;font-family:roboto">Resume</h2><hr>
+                                            <hr>
+                                                <div class="col-md-1 col-md-offset-4">
+                                                    <h2 style="font-family:roboto;display:inline">Resume</h2>
+                                                </div>
+                                                <div class="col-md-1 col-md-offset-5">
+                                                    <a href="{{ url('/resume') }}" class="btn btn-info active">Download</a>
+                                                </div>
+                                                <br>
+                                            <hr>
                                         </div>
 
                                         <div class="ui-content" role="main">
