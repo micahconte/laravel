@@ -43,8 +43,8 @@
                                             <br>
 
                                             <p>
-                                                Thank You,<br>  
-                                                Micah Conte<br>
+                                                Thank You,<br><br>
+                                                <i>Micah Conte</i><br>
                                                 239.207.8036<br>
                                                 micahconte@hotmail.com<br>
                                                 <br>
