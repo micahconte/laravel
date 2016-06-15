@@ -56,6 +56,7 @@
                     <li><a href="{{ url('/contacts') }}">Contacts</a></li>
                     <li><a href="{{ url('/upload') }}">Upload</a></li>
                     <li><a href="{{ url('/address') }}">Address</a></li>
+                    <li><a href="{{ url('/rpn') }}">RPN</a></li>
                     <li><a href="{{ url('/roles') }}">Roles</a></li>
                 </ul>
 
@@ -82,6 +83,7 @@
     </nav>
     <script type="text/javascript" src="{{ url('js/jquery-2.1.4.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/bootstrap-3.3.6.js') }}"></script>
+    <script type="text/javascript" src="{{ url('js/angular.js') }}"></script>
     <script type="text/javascript" src="{{ url('/js/fastclick.js') }}"></script>
     <script type="text/javascript" src="{{ url('/js/datatables.js') }}"></script>
 

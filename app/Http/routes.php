@@ -21,6 +21,10 @@ Route::group(['middleware'=>['web']], function(){
 
 	Route::get('/home', 'IndexController@home');
 
+	Route::get('/rpn', function(){
+		return view('rpn.index');
+	});
+
 	Route::auth();
 });
 
