@@ -47,6 +47,8 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 |
 */
 
+bash_exec(".amezmo/config/after-change");
+
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
 $response = $kernel->handle(
